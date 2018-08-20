@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Component.UI", "Component.UI\Component.UI.csproj", "{F52CC6A5-95C0-416D-A958-CCE1993161FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Component.Core.UI", "Component.UI\Component.Core.UI.csproj", "{F52CC6A5-95C0-416D-A958-CCE1993161FE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01.UI", "01.UI", "{7C872DD1-56B1-4FF0-A6C3-0D4849D7BF8A}"
 EndProject
@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Component.ViewModel", "Comp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Component.UI.MVC", "Component.UI.MVC\Component.UI.MVC.csproj", "{71DE5AA1-9E62-431E-950E-B6E51A4683FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Component.Core.Api", "Component.Core.Api\Component.Core.Api.csproj", "{225A5FCA-C469-44DC-80D5-3CA5F90E6ECA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Component.Core.Api", "Component.Core.Api\Component.Core.Api.csproj", "{225A5FCA-C469-44DC-80D5-3CA5F90E6ECA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -47,11 +47,14 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.4.5.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Xml.Linq" />
@@ -154,6 +157,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Bootstrap\BootstrapAreaRegistration.cs" />
+    <Compile Include="Areas\Bootstrap\Controllers\HomeController.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
     <Compile Include="Areas\HelpPage\Controllers\HelpController.cs" />
@@ -182,9 +187,9 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\BootstrapController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Core\HtmlExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -196,6 +201,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\styles.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -224,6 +230,9 @@
     <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Bootstrap\Views\web.config" />
+    <Content Include="Areas\Bootstrap\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Bootstrap\Views\Forms\List.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\config.js" />
     <Content Include="Scripts\css.js" />
@@ -3407,17 +3416,17 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Bootstrap\Form.cshtml" />
+    <Content Include="Areas\Bootstrap\Views\Forms\BaseForm.cshtml" />
     <Content Include="Scripts\lib\bootstrap-datatables\Buttons-1.5.2\css\common.scss" />
     <Content Include="Scripts\lib\bootstrap-datatables\Buttons-1.5.2\css\mixins.scss" />
-    <Content Include="Views\Bootstrap\DataTables.cshtml" />
+    <Content Include="Areas\Bootstrap\Views\Forms\DataTables.cshtml" />
     <Content Include="Scripts\lib\lte\css\adminlte.css.map" />
     <Content Include="Scripts\lib\lte\css\adminlte.min.css.map" />
-    <Content Include="Views\Shared\_LTELayout.cshtml" />
-    <Content Include="Views\Shared\_LTEMenu.cshtml" />
-    <Content Include="Views\Shared\_LTEHeader.cshtml" />
-    <Content Include="Views\Shared\_LTEFooter.cshtml" />
-    <Content Include="Views\Bootstrap\Index.cshtml" />
+    <Content Include="Areas\Bootstrap\Views\Shared\_LTELayout.cshtml" />
+    <Content Include="Areas\Bootstrap\Views\Shared\_LTEMenu.cshtml" />
+    <Content Include="Areas\Bootstrap\Views\Shared\_LTEHeader.cshtml" />
+    <Content Include="Areas\Bootstrap\Views\Shared\_LTEFooter.cshtml" />
+    <Content Include="Areas\Bootstrap\Views\Forms\Index.cshtml" />
     <Content Include="Scripts\lib\bootstrap-slider\.bower.json" />
     <Content Include="Scripts\lib\bootstrap-slider\bower.json" />
     <Content Include="Scripts\lib\bootstrap-slider\README.md" />
@@ -3503,6 +3512,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Bootstrap\Models\" />
     <Folder Include="Content\lib\" />
     <Folder Include="Models\" />
     <Folder Include="Views\List\" />
@@ -3536,6 +3546,12 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Component.ViewModel\Component.ViewModel.csproj">
+      <Project>{234ea4fe-34bb-42df-a6af-ff5fc1afd02a}</Project>
+      <Name>Component.ViewModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
