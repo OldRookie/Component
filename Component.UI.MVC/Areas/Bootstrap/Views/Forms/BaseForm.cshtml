@@ -11,7 +11,7 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <h1>
-            Base Form
+            BaseForm
             @*<small>Control panel</small>*@
         </h1>
         <ol class="breadcrumb">
@@ -76,34 +76,11 @@
                             表单详情信息
                         </div>
                         <div class="panel-body">
-                            @foreach (var item in FormDetail)
+                            @foreach (var item in Model.FormDetail)
                             {
-                                <div class="panel panel-success">
-                                    <div class="panel-body">
-                                        <div class="row">
-                                            <div class="form-group form-group-sm col-sm-4">
-                                                <div class="col-sm-3">
-                                                    @Html.UILabelFor(x => FormDetail[item.Key].Title)
-                                                </div>
-                                                <div class="col-sm-9">
-                                                    @Html.UIEditorFor(x => FormDetail[item.Key].Title)
-                                                </div>
-                                            </div>
-                                            <div class="form-group form-group-sm col-sm-4">
-                                                <div class="col-sm-3">
-                                                    @Html.UILabelFor(x => FormDetail[item.Key].Desc)
-                                                </div>
-                                                <div class="col-sm-9">
-                                                    @Html.UITextAreaFor(x => FormDetail[item.Key].Desc)
-                                                    @Html.ValidationMessageFor(x => FormDetail[item.Key].Desc)
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @Html.Partial("_FormDetail", item)
                             }
                         </div>
-
                     </div>
                     <div class="panel panel-success">
                         <div class="panel-heading">

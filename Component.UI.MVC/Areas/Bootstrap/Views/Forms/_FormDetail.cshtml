@@ -1,0 +1,33 @@
+﻿@using Component.UI.MVC.Core;
+@using Component.ViewModel.WorkFlowViewMoels;
+@{
+    ViewData.TemplateInfo.HtmlFieldPrefix = "FormDetail";
+    var index = Guid.NewGuid();
+    var indexName = "FormDetail.Index";
+    ViewData.TemplateInfo.HtmlFieldPrefix = "FormDetail[" + index + "]";
+}
+@model FormDetail
+<div class="panel panel-success">
+    <input type="hidden" name="@indexName" value="@index" />
+    <div class="panel-body">
+        <div class="row">
+            <div class="form-group form-group-sm col-sm-4">
+                <div class="col-sm-3">
+                    @Html.UILabelFor(x => x.Title)
+                </div>
+                <div class="col-sm-9">
+                    @Html.UIEditorFor(x => x.Title)
+                </div>
+            </div>
+            <div class="form-group form-group-sm col-sm-4">
+                <div class="col-sm-3">
+                    @Html.UILabelFor(x => x.Desc)
+                </div>
+                <div class="col-sm-9">
+                    @Html.UITextAreaFor(x => x.Desc)
+                    @Html.ValidationMessageFor(x => x.Desc)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
