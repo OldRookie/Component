@@ -158,7 +158,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Bootstrap\BootstrapAreaRegistration.cs" />
-    <Compile Include="Areas\Bootstrap\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Bootstrap\Controllers\FormsController.cs" />
+    <Compile Include="Areas\Bootstrap\Controllers\TaskController.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
     <Compile Include="Areas\HelpPage\Controllers\HelpController.cs" />
@@ -3514,6 +3515,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Bootstrap\Models\" />
+    <Folder Include="Areas\Bootstrap\Views\Task\" />
     <Folder Include="Content\lib\" />
     <Folder Include="Models\" />
     <Folder Include="Views\List\" />
