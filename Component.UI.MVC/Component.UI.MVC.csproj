@@ -235,10 +235,12 @@
     <Content Include="Areas\Bootstrap\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Bootstrap\Views\Forms\List.cshtml" />
     <Content Include="Areas\Bootstrap\Views\Forms\_FormDetail.cshtml" />
+    <Content Include="Areas\Bootstrap\Views\Forms\_ListGroups.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\config.js" />
     <Content Include="Scripts\css.js" />
     <Content Include="Scripts\css.min.js" />
+    <Content Include="Scripts\dist\build.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -3403,6 +3405,7 @@
     <Content Include="Scripts\lib\select2\js\select2.full.min.js" />
     <Content Include="Scripts\lib\select2\js\select2.js" />
     <Content Include="Scripts\lib\select2\js\select2.min.js" />
+    <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\require.js" />
     <Content Include="Web.config" />
@@ -3511,15 +3514,18 @@
     <Content Include="Scripts\lib\font-awesome\scss\_screen-reader.scss" />
     <Content Include="Scripts\lib\font-awesome\scss\_stacked.scss" />
     <Content Include="Scripts\lib\font-awesome\scss\_variables.scss" />
+    <Content Include="Views\Shared\EditorTemplates\Datetime.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\AjaxSelect.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\MultiSelect.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Bootstrap\Models\" />
+    <Folder Include="Areas\Bootstrap\Views\Shared\EditorTemplates\" />
     <Folder Include="Areas\Bootstrap\Views\Task\" />
     <Folder Include="Content\lib\" />
     <Folder Include="Models\" />
     <Folder Include="Views\List\" />
-    <Folder Include="Views\Shared\EditorTemplate\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -3551,6 +3557,10 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Component.Infrastructure\Component.Infrastructure.csproj">
+      <Project>{afc667fd-b389-4d91-b216-bb536650553e}</Project>
+      <Name>Component.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Component.ViewModel\Component.ViewModel.csproj">
       <Project>{234ea4fe-34bb-42df-a6af-ff5fc1afd02a}</Project>
       <Name>Component.ViewModel</Name>

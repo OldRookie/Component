@@ -1,0 +1,24 @@
+﻿@model List<string>
+@{
+    var id = ViewData.TemplateInfo.GetFullHtmlFieldId(string.Empty);
+    var isDisabled = ViewData["Disabled"] != null;
+}
+@Html.ListBoxFor(model => model, (IEnumerable<SelectListItem>)ViewData["SelectList"],
+    new { style = "display:none;width:100%;", multiple = "multiple" })
+
+<script>
+    require(["css!../Content/select2/css/select2.css"], function () { });
+    require(['jquery', 'select2'], function ($) {
+        $(document).ready(function () {
+            $("#@ViewData.TemplateInfo.GetFullHtmlFieldId(string.Empty)").select2({
+
+            });
+            @if (isDisabled)
+            {
+                <text>
+            $("#@ViewData.TemplateInfo.GetFullHtmlFieldId(string.Empty)").prop("disabled", true);
+                </text>
+            }
+        });
+    });
+</script>

@@ -1,0 +1,30 @@
+﻿@model string
+@{
+    var id = ViewData.TemplateInfo.GetFullHtmlFieldId(string.Empty);
+    var isDisabled = ViewData["Disabled"] != null;
+    var url = ViewData["QueryUrl"];
+}
+@Html.DropDownListFor(model => model, new List<SelectListItem>(),
+    new { style = "display:none;width:100%;" })
+
+<script>
+    require(['jquery', 'select2'], function ($) {
+        $(document).ready(function () {
+            $("#@ViewData.TemplateInfo.GetFullHtmlFieldId(string.Empty)").select2({
+                allowClear: true,
+                placeholder: "",
+                ajax: {
+                    url: '@url',
+                    dataType: 'json',
+                    delay: 250,
+                    processResults: function (data) {
+                        return {
+                            results: data
+                        };
+                    },
+                    cache: true
+                }
+            });
+        });
+    });
+</script>
