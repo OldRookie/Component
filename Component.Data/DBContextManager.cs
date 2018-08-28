@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Text;
 using System.Threading;
+using System.Web;
 
 namespace Component.Data
 {
@@ -91,21 +91,5 @@ namespace Component.Data
                 dbContext.Dispose();
             }
         }
-    }
-
-    public static class HttpContext
-    {
-        public static IServiceProvider ServiceProvider;
-
-        public static Microsoft.AspNetCore.Http.HttpContext Current
-        {
-            get
-            {
-                object factory = ServiceProvider.GetService(typeof(Microsoft.AspNetCore.Http.IHttpContextAccessor));
-                Microsoft.AspNetCore.Http.HttpContext context = ((Microsoft.AspNetCore.Http.HttpContextAccessor)factory).HttpContext;
-                return context;
-            }
-        }
-
     }
 }

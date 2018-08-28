@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Component.Domain.Service
+namespace Component.Domain.Service.NetFramework
 {
     public class Class1
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Component.Data.Repository.NetFramework
+namespace Component.Infrastructure.NetFramework
 {
     public class Class1
     {
