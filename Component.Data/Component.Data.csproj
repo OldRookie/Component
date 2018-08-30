@@ -52,6 +52,7 @@
     <Compile Include="ComponentDBContext.cs" />
     <Compile Include="DBContextManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryableExtension.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
