@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Hosting;
 
-namespace Component.Infrastructure.File
+namespace Component.Infrastructure
 {
     public class FolderHelper
     {

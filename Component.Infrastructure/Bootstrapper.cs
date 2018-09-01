@@ -17,7 +17,7 @@ namespace Component.Infrastructure
 
         public static void Initialize()
         {
-
+            StartSchedule();
         }
     }
 }

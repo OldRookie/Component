@@ -1,4 +1,5 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Component.Infrastructure.Log
 {
-    public static class LogExtension
+    public class Logger
     {
         private ILog logger;
-        public Log(ILog log)
+        public Logger(ILog log)
         {
             this.logger = log;
         }

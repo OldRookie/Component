@@ -1,9 +1,12 @@
 ﻿var require = {
     baseUrl: "/scripts/",
     paths: {
-        "jquery": "jquery-1.10.2.min",
+        "jquery": "jquery-3.3.1.min",
         "validator": "jquery.validate",
         "validate.unobtrusive": "jquery.validate.unobtrusive",
+        "datatables.net": "bootstrap-datatables/datatables",
+        "dataTables.responsive": "bootstrap-datatables/Responsive-2.2.2/dataTables.responsive",
+        "ckeditor": "ckeditor/ckeditor",
     },
     waitSeconds: 15,
     map: {

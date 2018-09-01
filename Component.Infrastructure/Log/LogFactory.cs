@@ -1,4 +1,5 @@
-﻿using log4net;
+﻿using Component.Infrastructure.Log;
+using log4net;
 using System;
 using System.IO;
 using System.Web;
@@ -9,16 +10,16 @@ namespace Component.Infrastructure
     {
         static LogFactory()
         {
-            FileInfo configFile = new FileInfo(HttpContext.Current.Server.MapPath("/Configs/log4net.config"));
+            FileInfo configFile = new FileInfo(FolderHelper.MapPath("/Configs/log4net.config"));
             log4net.Config.XmlConfigurator.Configure(configFile);
         }
-        public static Log GetLogger(Type type)
+        public static Logger GetLogger(Type type)
         {
-            return new Log(LogManager.GetLogger(type));
+            return new Logger(LogManager.GetLogger(type));
         }
-        public static Log GetLogger(string str)
+        public static Logger GetLogger(string str)
         {
-            return new Log(LogManager.GetLogger(str));
+            return new Logger(LogManager.GetLogger(str));
         }
     }
 }
