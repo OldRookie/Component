@@ -46,12 +46,7 @@
                                         @Html.UILabelFor(x => x.FormDateTime)
                                     </div>
                                     <div class="col-sm-9">
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-calendar"></i>
-                                            </div>
-                                            @Html.UIEditorFor(x => x.FormDateTime)
-                                        </div>
+                                        @Html.UIEditorFor(x => x.FormDateTime)
                                         @Html.ValidationMessageFor(x => x.FormDateTime)
                                     </div>
                                 </div>
