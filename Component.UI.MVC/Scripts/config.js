@@ -4,7 +4,7 @@
         "jquery": "jquery-3.3.1.min",
         "validator": "jquery.validate",
         "validate.unobtrusive": "jquery.validate.unobtrusive",
-        "datatables.net": "lib/bootstrap-datatables/datatables",
+        "datatables.net": "lib/bootstrap-datatables/DataTables-1.10.18/js/jquery.dataTables",
         "dataTables.bootstrap": "lib/bootstrap-datatables/DataTables-1.10.18/js/dataTables.bootstrap",
         "dataTables.responsive": "lib/bootstrap-datatables/Responsive-2.2.2/js/dataTables.responsive",
         "select2": "lib/select2/js/select2",
