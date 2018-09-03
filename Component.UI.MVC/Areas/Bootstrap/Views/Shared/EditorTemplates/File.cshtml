@@ -1,0 +1,97 @@
+﻿@using Component.ViewModel;
+@using Component.Infrastructure;
+@model Guid?
+@{
+    var attachment = ViewData["Attachment"] as AttachmentDTO;
+    var id = ViewData.TemplateInfo.GetFullHtmlFieldId(string.Empty);
+    var allowedFileExtensions = ViewData["AllowedFileExtensions"] as List<string>;
+    var maxFileSize = ViewData["MaxFileSize"] as int?;
+    var uploadedOpt = ViewData["UploadedOpt"];
+    var viewId = "view";
+    var fullViewId = id + "_view";
+
+    //var attrDict = ViewData["Attributes"] as RouteValueDictionary;
+    var attrDict = HtmlHelper.AnonymousObjectToHtmlAttributes(ViewData["Attributes"]);
+}
+@Html.TextBox(viewId, null, new { type = "file", multiple = "multiple", @class = "file-loading" })
+@Html.HiddenFor(x => x, attrDict)
+<script>
+    setTimeout(function(){
+        require(["css!lib/bootstrap-fileinput/css/fileinput.css","css!lib/bootstrap-fileinput/themes/explorer-fa/theme.css"],function(){});
+        require(["fileinput-zh"], function () {
+            var uploadedOpt=null;
+            try {
+                if ('@(uploadedOpt!=null)'=='True')
+                {
+                    require(['uploadedOpt'],function(opt){
+                        uploadedOpt=opt;
+                    })
+                }
+            } catch (e) {
+            }
+            var options = {
+                theme: 'explorer-fa',
+                uploadUrl: '@Url.Action("Upload", "Attachment")',
+                language: 'zh',
+                hideThumbnailContent: true,
+                layoutTemplates: {
+                    progress: '',
+                    content:''
+                },
+                fileActionSettings: {
+                    showZoom: false,
+                    showRemove: false,
+                    showUpload: false,
+                    showDrag: false,
+                    showDownload: true
+                },
+                dropZoneEnabled: false,
+                maxFileCount: 1,
+                showCaption: false,
+                showClose: false,
+
+            };
+            @if(attachment != null)
+            {
+                <text>
+            $.extend(options, {
+                initialPreview: ["text"],
+                initialPreviewAsData: true,
+                initialPreviewConfig: [{
+                    type: "text",
+                    caption : '@attachment.Name',
+                    size : @attachment.Size,
+                    downloadUrl : '@Url.Action("Download", "Attachment", new { id = attachment.Id })',
+                    key : '@attachment.Id'}]
+            });
+                </text>
+            }
+            @if (allowedFileExtensions != null)
+            {
+                var exts= allowedFileExtensions.ToJson();
+                <text>
+            $.extend(options,{ allowedFileExtensions:@Html.Raw(exts) } );
+                </text>
+            }
+            @if (maxFileSize != null)
+            {
+                <text>
+            $.extend(options,{ maxFileSize:@maxFileSize  });
+                </text>
+            }
+
+            $('#@fullViewId').fileinput(options).on('fileuploaded', function (event, data, previewId, index) {
+                var form = data.form, files = data.files, extra = data.extra,
+                    response = data.response, reader = data.reader;
+                $('#@id').val(data.response.initialPreviewConfig[0].key);
+                if (uploadedOpt) {
+                    uploadedOpt.callback();
+                }
+            }).on('filecleared',  function(event, id, index) {
+                $('#@id').val('');
+            });;
+        });
+
+    },0);
+
+</script>

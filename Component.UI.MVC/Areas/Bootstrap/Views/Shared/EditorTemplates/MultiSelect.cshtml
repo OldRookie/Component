@@ -7,7 +7,7 @@
     new { style = "display:none;width:100%;", multiple = "multiple" })
 
 <script>
-    require(["css!../Content/select2/css/select2.css"], function () { });
+    require(["css!lib/select2/css/select2.css"], function () { });
     require(['jquery', 'select2'], function ($) {
         $(document).ready(function () {
             $("#@ViewData.TemplateInfo.GetFullHtmlFieldId(string.Empty)").select2({

@@ -26,6 +26,12 @@ namespace Component.UI.MVC.Areas.Bootstrap.Controllers
             return View(model);
         }
 
+        public ActionResult AdvanceForm()
+        {
+            var model = new AdvancedForm();
+            return View(model);
+        }
+
         public ActionResult SaveBaseForm(BaseFormVM vm)
         {
             return View();

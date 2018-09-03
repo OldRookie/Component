@@ -4,7 +4,7 @@ using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Data;
 
-namespace CTF.Code
+namespace Component.Infrastructure
 {
     public static class Json
     {

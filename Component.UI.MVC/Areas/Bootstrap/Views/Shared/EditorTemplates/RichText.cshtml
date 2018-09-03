@@ -1,0 +1,13 @@
+﻿@model string
+@{
+    var id = ViewData.TemplateInfo.GetFullHtmlFieldId(string.Empty);
+}
+@Html.UITextAreaFor(model => model)
+
+<script>
+    require(['jquery', 'ckeditor'], function ($, CKEDITOR) {
+        $(document).ready(function () {
+            CKEDITOR.replace('@id')
+        });
+    });
+</script>

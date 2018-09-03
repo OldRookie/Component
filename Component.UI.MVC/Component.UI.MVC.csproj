@@ -171,6 +171,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Bootstrap\BootstrapAreaRegistration.cs" />
+    <Compile Include="Areas\Bootstrap\Controllers\AttachmentController.cs" />
     <Compile Include="Areas\Bootstrap\Controllers\FormsController.cs" />
     <Compile Include="Areas\Bootstrap\Controllers\TaskController.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
@@ -254,6 +255,7 @@
     <Content Include="Configs\log4net.config" />
     <Content Include="Configs\system.config" />
     <Content Include="quartz.config" />
+    <Content Include="Areas\Bootstrap\Views\Forms\AdvanceForm.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\config.js" />
     <Content Include="Scripts\css.js" />
@@ -3540,18 +3542,22 @@
     <Content Include="Scripts\lib\font-awesome\scss\_screen-reader.scss" />
     <Content Include="Scripts\lib\font-awesome\scss\_stacked.scss" />
     <Content Include="Scripts\lib\font-awesome\scss\_variables.scss" />
-    <Content Include="Views\Shared\EditorTemplates\Datetime.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\AjaxSelect.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\MultiSelect.cshtml" />
+    <Content Include="Areas\Bootstrap\Views\Shared\EditorTemplates\Datetime.cshtml" />
+    <Content Include="Areas\Bootstrap\Views\Shared\EditorTemplates\AjaxSelect.cshtml" />
+    <Content Include="Areas\Bootstrap\Views\Shared\EditorTemplates\MultiSelect.cshtml" />
+    <Content Include="Areas\Bootstrap\Views\Shared\EditorTemplates\RichText.cshtml" />
+    <Content Include="Areas\Bootstrap\Views\Shared\EditorTemplates\File.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Bootstrap\Models\" />
-    <Folder Include="Areas\Bootstrap\Views\Shared\EditorTemplates\" />
+    <Folder Include="Areas\Bootstrap\Views\Attachment\" />
     <Folder Include="Areas\Bootstrap\Views\Task\" />
     <Folder Include="Content\lib\" />
     <Folder Include="Models\" />
+    <Folder Include="UploadImages\" />
     <Folder Include="Views\List\" />
+    <Folder Include="Views\Shared\EditorTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
