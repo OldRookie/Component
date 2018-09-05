@@ -12,7 +12,9 @@ namespace Component.Infrastructure
         private static void StartSchedule() {
             ISchedulerFactory schedulerFactory = new StdSchedulerFactory();
             IScheduler scheduler = schedulerFactory.GetScheduler().GetAwaiter().GetResult();
-            scheduler.Start();
+            scheduler.Start().ContinueWith(t => {
+                scheduler.TriggerJob(new JobKey("SimpleJob", "SimpleJob"));
+            }); ;
         }
 
         public static void Initialize()

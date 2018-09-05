@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Component.Domain.Service", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Component.UI.MVC", "Component.UI.MVC\Component.UI.MVC.csproj", "{71DE5AA1-9E62-431E-950E-B6E51A4683FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Component.ViewModel", "Component.ViewModel\Component.ViewModel.csproj", "{AD12C6F3-4745-4AE1-ACBF-D64C6CAC7586}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Component.Model", "Component.ViewModel\Component.Model.csproj", "{AD12C6F3-4745-4AE1-ACBF-D64C6CAC7586}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01.UI", "01.UI", "{F4F09D13-E352-462D-A9A3-311B86A42DF1}"
 EndProject

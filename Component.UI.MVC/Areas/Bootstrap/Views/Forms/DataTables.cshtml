@@ -1,87 +1,140 @@
 ﻿@using Component.UI.MVC.Core;
 @using Component.ViewModel.WorkFlowViewMoels;
+@using Component.ViewModel.DTO;
+@using Component.Infrastructure.AttributeExt;
 @{
     /**/
-    ViewBag.Title = "BaseForm";
-    var FormDetail = Model.FormDetail.ToDictionary(x => Guid.NewGuid(), y => y);
+    ViewBag.Title = "Datatables";
+    var propertyDict = typeof(WorkFlowDTO).GetEntityPropertyDict();
+    var dictText = propertyDict.ToJson();
 }
-@model BaseFormVM
+@model DataTablesQueryRequest
 
 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <h1>
-            BaseForm
+            Datatables
             @*<small>Control panel</small>*@
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Forms</a></li>
-            <li class="active">Base Form</li>
+            <li class="active">Data tables</li>
         </ol>
     </div>
 
     <!-- Main content -->
     <div class="content">
         <div class="form-horizontal">
-            <form id="viewForm">
-                <div class="panel-group">
-                    <div class="panel panel-success">
-                        <div class="panel-heading">
-                            表单信息
-                        </div>
+            <div class="panel-group">
+                <div class="panel panel-success">
+                    <form class="query-form">
                         <div class="panel-body">
                             <div class="row">
-                                <div class="form-group form-group-sm col-sm-4">
-                                    <div class="col-sm-3">
+                                <div class="form-group form-group-sm col-sm-12">
+                                    <div class="col-sm-2">
                                         @Html.UILabelFor(x => x.Name)
                                     </div>
-                                    <div class="col-sm-9">
+                                    <div class="col-sm-10">
                                         @Html.UIEditorFor(x => x.Name)
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="form-group form-group-sm col-sm-4">
-                                    <div class="col-sm-3">
-                                        @Html.UILabelFor(x => x.FormDateTime)
-                                    </div>
-                                    <div class="col-sm-9">
-                                        @Html.UIEditorFor(x => x.FormDateTime)
-                                        @Html.ValidationMessageFor(x => x.FormDateTime)
-                                    </div>
-                                </div>
-                                <div class="form-group form-group-sm col-sm-4">
-                                    <div class="col-sm-3">
-                                        @Html.UILabelFor(x => x.Money)
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <div class="input-group">
-                                            @Html.UIEditorFor(x => x.Money)
-                                            <span class="input-group-addon">$</span>
-                                        </div>
-                                        @Html.ValidationMessageFor(x => x.Money)
-                                    </div>
-                                </div>
+                            <div class="row text-center ">
+                                <button type="button" style="min-width:100px" class="btn btn-search btn-normal btn-sm btn-primary">查询</button>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="panel panel-success">
-                        <div class="panel-heading">
-                            表单详情信息
-                        </div>
-                        <div class="panel-body">
-                            @foreach (var item in Model.FormDetail)
-                            {
-                                @Html.Partial("_FormDetail", item)
-                            }
-                        </div>
-                    </div>
-                    @Html.Partial("_ListGroups")
+                    </form>
                 </div>
-            </form>
+                <div class="panel panel-success">
+                    <div class="panel-body">
+                        <div class="col-sm-12">
+                            <div>
+                                <table width="100%" class="dt-wf table table-bordered table-hover dataTable nowrap"></table>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <!-- /.content -->
 </div>
+<script>
+    require(["jquery", "dataTables.bootstrap"], function ($) {
+        $(document).ready(function () {
+            var propertyDict = JSON.parse('@Html.Raw(dictText)');
+            var cols = [];
+
+            for (var key in propertyDict) {
+                var item = { visible: true, title: propertyDict[key], data: key, className: "cell-" + key, orderable: false };
+                if (key == "Id") {
+                    item.visible = true;
+                }
+                cols.push(item)
+            }
+            var url = '@Url.Action("Query")';
+            var dataTable = $('.dt-wf').DataTable({
+                responsive: false,
+                serverSide: true,
+                autoWidth: true,
+                scrollX: true,
+                sScrollX: "100%",
+                //deferLoading: 0,
+                ajax: {
+                    url: url,
+                    ordering: false,
+                    scrollX: true,
+                    data: function (data) {
+                        // Grab form values containing user options
+                        var form = {};
+                        var form = $(".query-form").serializeArray();
+                        // Add options used by Datatables
+                        form.push({ name: "Start", value: data.start });
+                        form.push({ name: "Length", value: data.length });
+                        form.push({ name: "Draw", value: data.draw });
+                        return form;
+                    }
+                },
+                //data: @*@Html.Raw(data)*@,
+                dom: '<"row"<"col-sm-6"l><"col-sm-6"<"toolbar">>><"row"<"col-sm-12">t><"row"<"col-sm-6"i><"col-sm-6"p>>',
+                columns:cols,
+                columnDefs: [{
+                    "targets": "cell-SequenceNumber",
+                    render: function (data, type, row, meta) {
+                        return '<a href="' + row.ID + '">' + (data == null ? '' : data) + '</a>';
+                    }
+                },
+                {
+                    "targets": "cell-CreateTime",
+                    render: function (data, type, row, meta) {
+                        if (row.RegisterDate) {
+                            var date = new Date(row.CreateTime);
+                            return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+                        }
+                        else {
+                            return '';
+                        }
+                    }
+                }],
+                rowCallback: function (row, data, dataIndex) {
+                    if (data.IsSelected) {
+                    }
+                }
+            });
+
+            //row click
+            dataTable.on('click', 'td', function () {
+                var data = dataTable.row($(this).parents('tr')).data();
+                var column = dataTable.column( $(this).index()+':visIdx' );
+            });
+
+            $(".btn-search").click(function () {
+                dataTable.ajax.reload();
+            });
+
+        });
+    });
+</script>

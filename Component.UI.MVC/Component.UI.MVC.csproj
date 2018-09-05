@@ -3597,9 +3597,9 @@
       <Project>{afc667fd-b389-4d91-b216-bb536650553e}</Project>
       <Name>Component.Infrastructure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Component.ViewModel\Component.ViewModel.csproj">
+    <ProjectReference Include="..\Component.ViewModel\Component.Model.csproj">
       <Project>{ad12c6f3-4745-4ae1-acbf-d64c6cac7586}</Project>
-      <Name>Component.ViewModel</Name>
+      <Name>Component.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

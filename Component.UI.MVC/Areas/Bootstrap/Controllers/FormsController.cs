@@ -1,4 +1,7 @@
-﻿using Component.ViewModel.WorkFlowViewMoels;
+﻿using Component.Model.DataTables;
+using Component.ViewModel;
+using Component.ViewModel.DTO;
+using Component.ViewModel.WorkFlowViewMoels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +36,27 @@ namespace Component.UI.MVC.Areas.Bootstrap.Controllers
         }
 
         public ActionResult SaveBaseForm(BaseFormVM vm)
+        {
+            return View();
+        }
+
+        public ActionResult Query(DataTablesQueryRequest queryRequest)
+        {
+            var workFlowDTOs = new List<WorkFlowDTO>();
+            workFlowDTOs.Add(new WorkFlowDTO()
+            {
+                Id = "1",
+                CreateTime = DateTime.Now,
+                SequenceNumber = "1",
+                Type = "Type",
+                UserName = "User"
+
+            });
+            var dataResult= new DataTablesResult<WorkFlowDTO>(queryRequest.Draw, workFlowDTOs.Count, workFlowDTOs.Count, workFlowDTOs);
+            return Json(dataResult, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult DataTables()
         {
             return View();
         }

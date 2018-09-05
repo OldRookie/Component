@@ -63,9 +63,9 @@
       <Project>{9a5f9093-9b72-46b0-b4d2-102e4cfb15c9}</Project>
       <Name>Component.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Component.ViewModel\Component.ViewModel.csproj">
+    <ProjectReference Include="..\Component.ViewModel\Component.Model.csproj">
       <Project>{ad12c6f3-4745-4ae1-acbf-d64c6cac7586}</Project>
-      <Name>Component.ViewModel</Name>
+      <Name>Component.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
