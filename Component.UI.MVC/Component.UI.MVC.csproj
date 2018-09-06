@@ -173,7 +173,9 @@
     <Compile Include="Areas\Bootstrap\BootstrapAreaRegistration.cs" />
     <Compile Include="Areas\Bootstrap\Controllers\AttachmentController.cs" />
     <Compile Include="Areas\Bootstrap\Controllers\FormsController.cs" />
+    <Compile Include="Areas\Bootstrap\Controllers\ImportController.cs" />
     <Compile Include="Areas\Bootstrap\Controllers\TaskController.cs" />
+    <Compile Include="Areas\Bootstrap\Controllers\UserController.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
     <Compile Include="Areas\HelpPage\Controllers\HelpController.cs" />
@@ -248,7 +250,6 @@
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Bootstrap\Views\web.config" />
     <Content Include="Areas\Bootstrap\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Bootstrap\Views\Forms\List.cshtml" />
     <Content Include="Areas\Bootstrap\Views\Forms\_FormDetail.cshtml" />
     <Content Include="Areas\Bootstrap\Views\Forms\_ListGroups.cshtml" />
     <Content Include="Configs\database.config" />
@@ -256,6 +257,8 @@
     <Content Include="Configs\system.config" />
     <Content Include="quartz.config" />
     <Content Include="Areas\Bootstrap\Views\Forms\AdvanceForm.cshtml" />
+    <Content Include="Areas\Bootstrap\Views\User\_CreateOrEdit.cshtml" />
+    <Content Include="Areas\Bootstrap\Views\User\List.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\config.js" />
     <Content Include="Scripts\css.js" />
@@ -268,6 +271,7 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.ext.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.bootstrap.js" />
@@ -3552,6 +3556,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Bootstrap\Models\" />
     <Folder Include="Areas\Bootstrap\Views\Attachment\" />
+    <Folder Include="Areas\Bootstrap\Views\Import\" />
     <Folder Include="Areas\Bootstrap\Views\Task\" />
     <Folder Include="Content\lib\" />
     <Folder Include="Models\" />

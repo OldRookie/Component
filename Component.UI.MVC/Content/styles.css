@@ -38,6 +38,10 @@
     float: none;
 }
 
+.btn-normal {
+    min-width:100px;
+}
+
 @media (max-width: 1200px) {
     /* HEADER */
     .main-header .navbar-custom-menu {

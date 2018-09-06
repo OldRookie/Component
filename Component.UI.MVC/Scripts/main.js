@@ -1,4 +1,4 @@
-﻿; require(['jquery', "bootstrap.lte", "dataTables.bootstrap", "bootstrap-datetimepicker"], function ($) {
+﻿; require(['jquery', "bootstrap.lte", "dataTables.bootstrap", "bootstrap-datetimepicker", "jquery.ext"], function ($) {
     $(function () {
         if ($.fn.dataTable) {
             $.extend(true, $.fn.dataTable.defaults, {

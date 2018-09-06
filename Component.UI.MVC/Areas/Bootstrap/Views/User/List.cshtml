@@ -1,31 +1,35 @@
-﻿@using Component.UI.MVC.Core;
+﻿@using Component.Model.ViewModel;
+@using Component.UI.MVC.Core;
 @using Component.ViewModel.WorkFlowViewMoels;
 @using Component.ViewModel.DTO;
 @using Component.Infrastructure.AttributeExt;
+@using Component.Model;
 @{
     /**/
-    ViewBag.Title = "Datatables";
-    var propertyDict = typeof(WorkFlowDTO).GetEntityPropertyDict();
+    ViewBag.Title = "User List";
+    var propertyDict = typeof(UserVM).GetEntityPropertyDict();
     var dictText = propertyDict.ToJson();
 }
-@model DataTablesQueryRequest
-
+@model UserQueryRequest
 
 <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-        <h1>
-            Datatables
-            @*<small>Control panel</small>*@
-        </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Forms</a></li>
-            <li class="active">Data tables</li>
-        </ol>
+    <div class="content-header clearfix">
+        <h4 class="pull-left">
+            @ViewBag.Title
+        </h4>
+        <div class="pull-right btn-group-sm">
+            <button class="btn bg-blue btn-normal btn-sm btn-add">
+                <i class="fa fa-plus-square"></i>
+                新增
+            </button>
+            <button class="btn bg-blue btn-export btn-normal btn-sm">
+                <i class="glyphicon glyphicon-export"></i>导出
+            </button>
+        </div>
     </div>
 
     <!-- Main content -->
-    <div class="content">
+    <div class="content" style="padding-top:0px;">
         <div class="form-horizontal">
             <div class="panel-group">
                 <div class="panel panel-success">
@@ -41,7 +45,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row text-center ">
+                            <div class="row text-center">
                                 <button type="button" style="min-width:100px" class="btn btn-search btn-normal btn-sm btn-primary">查询</button>
                             </div>
                         </div>
@@ -51,19 +55,31 @@
                     <div class="panel-body">
                         <div class="col-sm-12">
                             <div>
-                                <table width="100%" class="dt-wf table table-bordered table-hover dataTable nowrap"></table>
+                                <table width="100%" class="data-table table table-bordered table-hover dataTable nowrap"></table>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="modal-container" style="display:none">
         </div>
     </div>
     <!-- /.content -->
 </div>
 <script>
     require(["jquery", "dataTables.bootstrap"], function ($) {
+        define('model.opt', ["jquery"], function ($) {
+            return {
+                success: function () {
+                    var container = $('.modal-container');
+                    container.find('.modal.fade').modal('hide');
+                    $(".btn-search").click();
+                }
+            }
+        });
+
         $(document).ready(function () {
             var propertyDict = JSON.parse('@Html.Raw(dictText)');
             var cols = [];
@@ -76,7 +92,7 @@
                 cols.push(item)
             }
             var url = '@Url.Action("Query")';
-            var dataTable = $('.dt-wf').DataTable({
+            var dataTable = $('.data-table').DataTable({
                 responsive: false,
                 serverSide: true,
                 autoWidth: true,
@@ -101,24 +117,7 @@
                 //data: @*@Html.Raw(data)*@,
                 dom: '<"row"<"col-sm-6"l><"col-sm-6"<"toolbar">>><"row"<"col-sm-12">t><"row"<"col-sm-6"i><"col-sm-6"p>>',
                 columns:cols,
-                columnDefs: [{
-                    "targets": "cell-SequenceNumber",
-                    render: function (data, type, row, meta) {
-                        return '<a href="' + row.ID + '">' + (data == null ? '' : data) + '</a>';
-                    }
-                },
-                {
-                    "targets": "cell-CreateTime",
-                    render: function (data, type, row, meta) {
-                        if (row.RegisterDate) {
-                            var date = new Date(row.CreateTime);
-                            return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
-                        }
-                        else {
-                            return '';
-                        }
-                    }
-                }],
+                columnDefs: [],
                 rowCallback: function (row, data, dataIndex) {
                     if (data.IsSelected) {
                     }
@@ -134,6 +133,18 @@
             $(".btn-search").click(function () {
                 dataTable.ajax.reload();
             });
+
+            $('.btn-add').click(function () {
+                var url='@Url.Action("CreateOrEdit")'
+                $.getRequest(url, function (data) {
+                    var container = $('.modal-container');
+                    container.empty();
+                    container.append(data);
+                    container.show();
+                    container.find('.modal.fade').modal('show');
+                });
+            });
+           
         });
     });
 </script>

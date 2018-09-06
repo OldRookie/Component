@@ -1,0 +1,99 @@
+﻿@using Component.UI.MVC.Core;
+@using Component.ViewModel.WorkFlowViewMoels;
+@using Component.Model.ViewModel;
+@{
+    ViewBag.Title = "新增或者编辑用户";
+}
+@model UserVM
+
+<div class="modal fade form-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="productsettings-window-title">
+                    新建修改
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="validation-summary-valid" data-valmsg-summary="true" style="display:none">
+                    <ul>
+                        <li style="display:none"></li>
+                    </ul>
+                </div>
+                <form class="action-form">
+                    <div class="form-horizontal">
+                        @Html.HiddenFor(x => x.Id)
+                        <div class="row">
+                            <div class="form-group form-group-sm col-sm-12">
+                                <div class="col-sm-2">
+                                    @Html.UILabelFor(x => x.Name)
+                                </div>
+                                <div class="col-sm-9">
+                                    @Html.UIEditorFor(x => x.Name)
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="form-group form-group-sm col-sm-12">
+                                <div class="col-sm-2">
+                                    @Html.UILabelFor(x => x.EMail)
+                                </div>
+                                <div class="col-sm-9">
+                                    @Html.UIEditorFor(x => x.EMail)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group form-group-sm col-sm-12">
+                                <div class="col-sm-2">
+                                    @Html.UILabelFor(x => x.FullName)
+                                </div>
+                                <div class="col-sm-9">
+                                    @Html.UIEditorFor(x => x.FullName)
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <center>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary btn-ok">OK</button>
+                </center>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    require(["jquery", "model.opt", "validate.unobtrusive" ], function ($, modelOpt) {
+        var form = $(".form-modal form.action-form");
+        var url= '@Url.Action("Save")';
+        $('.form-modal .btn-ok').click(function () {
+
+            $.validator.unobtrusive.parse(form);
+            var validator = form.data('validator');
+            if (validator) {
+                validator.settings.ignore = ".ignore";
+                validator.cancelSubmit = true;
+            }
+            form.validate();
+            if (form.valid()) {
+                var data = form.serializeArray();
+                $.postRequest(url, data, function (response) {
+                    if (response.Code == 1) {
+                        if (modelOpt != null) {
+                            modelOpt.success(data);
+                        }
+                    }
+                    else {
+                        $.showInvalidError(response.ErrorMessages);
+                    }
+                });
+            }
+        });
+    });
+</script>​
