@@ -393,6 +393,7 @@
     <Content Include="Scripts\lib\bootstrap-datatables\datatables.js" />
     <Content Include="Scripts\lib\bootstrap-datatables\datatables.min.css" />
     <Content Include="Scripts\lib\bootstrap-datatables\datatables.min.js" />
+    <Content Include="Scripts\lib\bootstrap-datatables\dataTables.select.ext.js" />
     <Content Include="Scripts\lib\bootstrap-datatables\FixedColumns-3.2.5\css\fixedColumns.bootstrap.css" />
     <Content Include="Scripts\lib\bootstrap-datatables\FixedColumns-3.2.5\css\fixedColumns.bootstrap.min.css" />
     <Content Include="Scripts\lib\bootstrap-datatables\FixedColumns-3.2.5\css\fixedColumns.bootstrap4.css" />

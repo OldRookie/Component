@@ -22,6 +22,10 @@
                 <i class="fa fa-plus-square"></i>
                 新增
             </button>
+            <button class="btn bg-blue btn-normal btn-sm btn-edit">
+                <i class="fa fa-edit"></i>
+                编辑
+            </button>
             <button class="btn bg-blue btn-export btn-normal btn-sm">
                 <i class="glyphicon glyphicon-export"></i>导出
             </button>
@@ -36,12 +40,20 @@
                     <form class="query-form">
                         <div class="panel-body">
                             <div class="row">
-                                <div class="form-group form-group-sm col-sm-12">
-                                    <div class="col-sm-2">
+                                <div class="form-group form-group-sm col-sm-6">
+                                    <div class="col-sm-3">
                                         @Html.UILabelFor(x => x.Name)
                                     </div>
-                                    <div class="col-sm-10">
+                                    <div class="col-sm-9">
                                         @Html.UIEditorFor(x => x.Name)
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-sm col-sm-6">
+                                    <div class="col-sm-3">
+                                        <div class="label-wrapper"><label class="control-label" for="Name" title="">邮箱</label></div>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input class="form-control text-box single-line" id="Name" name="Name" type="text" value="">
                                     </div>
                                 </div>
                             </div>
@@ -53,9 +65,10 @@
                 </div>
                 <div class="panel panel-success">
                     <div class="panel-body">
-                        <div class="col-sm-12">
+                        <div class="col-sm-12 dt-container">
                             <div>
-                                <table width="100%" class="data-table table table-bordered table-hover dataTable nowrap"></table>
+                                <table width="100%" class="data-table table table-bordered table-hover dataTable nowrap">
+                                </table>
                             </div>
                         </div>
 
@@ -69,7 +82,7 @@
     <!-- /.content -->
 </div>
 <script>
-    require(["jquery", "dataTables.bootstrap"], function ($) {
+    require(["jquery", "dataTables.select.ext", "dataTables.bootstrap", "datatables.net-select"], function ($,dtSelectExt) {
         define('model.opt', ["jquery"], function ($) {
             return {
                 success: function () {
@@ -84,6 +97,7 @@
             var propertyDict = JSON.parse('@Html.Raw(dictText)');
             var cols = [];
 
+            cols.push({ visible: true, title: "", className: "", orderable: false })
             for (var key in propertyDict) {
                 var item = { visible: true, title: propertyDict[key], data: key, className: "cell-" + key, orderable: false };
                 if (key == "Id") {
@@ -98,6 +112,7 @@
                 autoWidth: true,
                 scrollX: true,
                 sScrollX: "100%",
+                deferRender: true,
                 //deferLoading: 0,
                 ajax: {
                     url: url,
@@ -115,18 +130,41 @@
                     }
                 },
                 //data: @*@Html.Raw(data)*@,
-                dom: '<"row"<"col-sm-6"l><"col-sm-6"<"toolbar">>><"row"<"col-sm-12">t><"row"<"col-sm-6"i><"col-sm-6"p>>',
+                //dom: '<"row"<"col-sm-6"l><"col-sm-6"<"toolbar">>><"row"<"col-sm-12">t><"row"<"col-sm-6"i><"col-sm-6"p>>',
                 columns:cols,
-                columnDefs: [],
+                columnDefs: [{
+                    orderable: false,
+                    className: 'select-checkbox',
+                    targets: 0,
+                    render: function (data, type, row, meta) {
+                        return '';
+                    }
+                }],
+                select: {
+                    style: 'multi',
+                    //items:'cell',
+                    //selector: 'td:first-child'
+
+                },
+                //select:true,
                 rowCallback: function (row, data, dataIndex) {
+                    //dataTable.row(row).select();
                     if (data.IsSelected) {
+                       
                     }
                 }
             });
+            dtSelectExt.initSelectAll(dataTable);
+
+            dataTable.on('draw', function () {
+                //dataTable.row(':eq(1)').select();
+            });
+            
 
             //row click
             dataTable.on('click', 'td', function () {
                 var data = dataTable.row($(this).parents('tr')).data();
+                var selectRows = dataTable.rows({ selected: true });
                 var column = dataTable.column( $(this).index()+':visIdx' );
             });
 
@@ -136,6 +174,18 @@
 
             $('.btn-add').click(function () {
                 var url='@Url.Action("CreateOrEdit")'
+                $.getRequest(url, function (data) {
+                    var container = $('.modal-container');
+                    container.empty();
+                    container.append(data);
+                    container.show();
+                    container.find('.modal.fade').modal('show');
+                });
+            });
+
+            $('.btn-edit').click(function () {
+                var rows = dataTable.rows({ selected: true });
+                var url = '@Url.Action("CreateOrEdit")'
                 $.getRequest(url, function (data) {
                     var container = $('.modal-container');
                     container.empty();

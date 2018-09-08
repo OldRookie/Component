@@ -53,6 +53,14 @@ namespace Component.UI.MVC.Areas.Bootstrap.Controllers
                 Name = "Name"
 
             });
+            data.Add(new UserVM()
+            {
+                Id = "1",
+                FullName = "FullName",
+                EMail = "122@12.com",
+                Name = "Name"
+
+            });
             var dataResult = new DataTablesResult<UserVM>(queryRequest.Draw, data.Count, data.Count, data);
             return Json(dataResult, JsonRequestBehavior.AllowGet);
         }
