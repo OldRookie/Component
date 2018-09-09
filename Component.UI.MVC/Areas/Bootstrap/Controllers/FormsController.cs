@@ -1,4 +1,5 @@
 ﻿using Component.Model.DataTables;
+using Component.UI.MVC.Framework;
 using Component.ViewModel;
 using Component.ViewModel.DTO;
 using Component.ViewModel.WorkFlowViewMoels;
@@ -11,7 +12,7 @@ using System.Web.Mvc;
 
 namespace Component.UI.MVC.Areas.Bootstrap.Controllers
 {
-    public class FormsController : Controller
+    public class FormsController : BaseController
     {
         // GET: Bootstrap/Home
         public ActionResult Index()

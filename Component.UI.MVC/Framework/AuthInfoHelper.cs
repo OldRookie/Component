@@ -1,4 +1,5 @@
-﻿using Component.Infrastructure.Utility;
+﻿using Component.Infrastructure;
+using Component.Infrastructure.Utility;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,8 @@ namespace Component.UI.MVC.Framework
     {
         public static void SetAuthInfo(string userName, string language = "ZH-CN")
         {
-            var user = new object(); //new UserAppService().FindIdentityInfo(userName);
+            var user = new IdentityInfo(); //new UserAppService().FindIdentityInfo(userName);
+            user.UserName = userName;
 
             HttpContext.Current.Session.Clear();
 
@@ -24,7 +26,6 @@ namespace Component.UI.MVC.Framework
                 DateTime.Now.AddDays(1), false, UserData);
             HttpCookie Cookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(Ticket));//加密身份信息，保存至Cookie
             HttpContext.Current.Response.Cookies.Add(Cookie);
-
 
             //FormsAuthentication.SetAuthCookie(userName, false);
         }

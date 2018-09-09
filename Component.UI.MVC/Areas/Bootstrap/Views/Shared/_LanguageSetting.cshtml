@@ -1,0 +1,48 @@
+﻿@{
+    var routeData = new RouteValueDictionary();
+
+    foreach (var item in Url.RequestContext.RouteData.Values)
+    {
+        if (!item.Key.Equals("lang", StringComparison.CurrentCultureIgnoreCase))
+        {
+            if (!item.Key.Contains("controller") && !item.Key.Contains("action"))
+            {
+                routeData.Add(item.Key, item.Value);
+            }
+        }
+    }
+
+    foreach (var key in Request.QueryString.AllKeys)
+    {
+        if (!key.Equals("lang", StringComparison.CurrentCultureIgnoreCase)
+            && !key.Equals("language", StringComparison.CurrentCultureIgnoreCase))
+        {
+            if (!key.Contains("referencecontroller") && !key.Contains("referenceaction"))
+            {
+                routeData.Add(key, Request.QueryString[key]);
+            }
+        }
+    }
+
+    var languages = new List<string>() { "en-US", "zh-CN" };
+}
+
+<li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        语言<i class="fa fa-caret-down"></i>
+    </a>
+    <ul class="dropdown-menu dropdown-lang" style="min-width:20px;">
+        @foreach (var lang in languages)
+        {
+            routeData.Remove("language");
+            routeData.Add("language", lang);
+            var controller = Url.RequestContext.RouteData.Values["controller"] as string;
+            var action = Url.RequestContext.RouteData.Values["action"] as string;
+            <li>
+                <a href="@Url.Action(action,controller, routeData )">@lang</a>
+            </li>
+        }
+        
+    </ul>
+    <!-- /.dropdown-user -->
+</li>

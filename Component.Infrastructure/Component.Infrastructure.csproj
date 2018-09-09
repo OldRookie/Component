@@ -49,6 +49,7 @@
     <Compile Include="Description\DescriptionExtension.cs" />
     <Compile Include="Excel\ExcelHelper.cs" />
     <Compile Include="File\FolderHelper.cs" />
+    <Compile Include="Identity\IdentityInfoHelper.cs" />
     <Compile Include="Json\JsonExtension.cs" />
     <Compile Include="Log\LogExtension.cs" />
     <Compile Include="Log\LogFactory.cs" />
@@ -70,7 +71,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DependencyManagement\" />
-    <Folder Include="Identity\" />
     <Folder Include="RepositoryFramework\" />
     <Folder Include="Schedule\" />
   </ItemGroup>

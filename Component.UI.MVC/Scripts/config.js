@@ -19,8 +19,11 @@
         "fileinput-theme": "lib/bootstrap-fileinput/themes/explorer-fa/theme",
         "fileinput": "lib/bootstrap-fileinput/js/fileinput",
         "jquery.ext": "jquery.ext",
+        "system.permission": "app/system.permission",
+        "system.permission.resource.definition": "app/system.permission.resource.definition",
         "bootbox": "bootbox",
         "toastr": "toastr",
+        "iCheck": "lib/iCheck/icheck",
     },
     waitSeconds: 15,
     map: {
@@ -44,7 +47,8 @@
         "fileinput-theme": ["fileinput"],
         "jquery.ext": ["jquery"],
         "validate.unobtrusive": ["validator"],
-        "validator": ["jquery"]
+        "validator": ["jquery"],
+        "iCheck": ["jquery"],
         //...
     }
 };
