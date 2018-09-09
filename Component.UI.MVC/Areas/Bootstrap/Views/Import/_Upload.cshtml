@@ -40,13 +40,15 @@
 </div>
 
 <script>
-    require(["jquery", "importOption", "bootbox", "dataTables.bootstrap", "unobtrusive-ajax"], function ($, importOption, bootbox) {
+    require(["jquery", "importOption", "bootbox", "dataTables.bootstrap", "validate.unobtrusive"], function ($, importOption, bootbox) {
         var form = $(".form-modal form.import-form");
         $.validator.unobtrusive.parse(form);
         var validator = form.data('validator');
-        validator.settings.ignore = ".ignore";
-        validator.cancelSubmit = true;
-
+        if (validator) {
+            validator.settings.ignore = ".ignore";
+            validator.cancelSubmit = true;
+        }
+       
         $('.form-modal .btn-ok').click(function () {
             form.validate();
             if (form.valid()) {
@@ -54,8 +56,8 @@
                 var totalFiles = document.getElementById("File").files.length;
                 for (var i = 0; i < totalFiles; i++) {
                     var file = document.getElementById("File").files[i];
-                    formData.append("PostedFile", file);
                     formData.append("File", file.name);
+                    formData.append("PostedFile", file);
                 }
                 var data = form.serializeArray();
                 for (var i in data) {
@@ -80,18 +82,11 @@
                         }
                     },
                     error: function (error) {
-                        bootbox.alert('@("Notification.FormatMessage".ResourceText())');
+                        bootbox.alert('');
                     }
                 });
             }
         });
     });
 </script>
- define('common.wf.opt', ["jquery", "bootbox"], function ($, bootbox) {
-        return {
-            success: function (workFlowTye, data) {
-                window.location.href = '@Url.Action("List", "Supplier")';
-                }
-                };
-                });
 

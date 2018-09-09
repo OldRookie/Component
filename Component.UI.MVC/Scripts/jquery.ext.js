@@ -1,19 +1,19 @@
 ﻿
-;require(["jquery", "bootbox"], function (jQuery, bootbox) {
-    jQuery.each( [ "get", "post" ], function( i, method ) {
-        jQuery[method+"Request" ] = function( url, data, callback, type ) {
-            if ( jQuery.isFunction( data ) ) {
+; require(["jquery", "bootbox"], function (jQuery, bootbox) {
+    jQuery.each(["get", "post"], function (i, method) {
+        jQuery[method + "Request"] = function (url, data, callback, type) {
+            if (jQuery.isFunction(data)) {
                 type = type || callback;
                 callback = data;
                 data = undefined;
             }
-            if (method=='get') {
+            if (method == 'get') {
                 if (data == undefined) {
                     data = {};
                 }
                 data.rnd = Math.random();
             }
- 
+
             return jQuery.request({
                 url: url,
                 type: method,
@@ -23,7 +23,7 @@
             });
         };
     });
- 
+
     $.extend({
         request: function (options) {
             var successCallback = options.success;
@@ -33,11 +33,11 @@
                         successCallback(rep);
                     }
                 } catch (e) {
-                    //$('.window-overlay').hide();
+                    $('.window-overlay').hide();
                 }
-                
+
                 if (!options.notLoadOverlay) {
-                    //$('.window-overlay').hide();
+                    $('.window-overlay').hide();
                 }
             }
             var errorCallback = options.error;
@@ -50,32 +50,32 @@
                         bootbox.alert("服务器错误!")
                     }
                 } catch (e) {
-                    //$('.window-overlay').hide();
+                    $('.window-overlay').hide();
                 }
-                
+
                 if (!options.notLoadOverlay) {
-                    //$('.window-overlay').hide();
+                    $('.window-overlay').hide();
                 }
             }
- 
+
             if (!options.notLoadOverlay) {
-                //$('.window-overlay').show();
+                $('.window-overlay').show();
             }
-            
+
             return jQuery.ajax(options);
         },
-        showInvalidError: function (msgs,selector) {
+        showInvalidError: function (msgs, selector) {
             if (!selector) {
                 selector = "[data-valmsg-summary]";
             }
-            
+
             var container = $(selector);
             var list = container.find("ul");
- 
+
             if (list && msgs.length) {
                 list.empty();
                 container.addClass("validation-summary-errors").removeClass("validation-summary-valid");
- 
+
                 $.each(msgs, function (i, msg) {
                     $("<li />").html(msg).appendTo(list);
                 });
@@ -83,7 +83,7 @@
             }
         }
     });
- 
+
     $.fn.serializeObject = function () {
         var o = {};
         var a = this.serializeArray();
@@ -99,4 +99,4 @@
         });
         return o;
     };
-});​
+});

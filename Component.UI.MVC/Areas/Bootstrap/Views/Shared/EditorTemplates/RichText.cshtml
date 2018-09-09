@@ -7,7 +7,12 @@
 <script>
     require(['jquery', 'ckeditor'], function ($, CKEDITOR) {
         $(document).ready(function () {
-            CKEDITOR.replace('@id')
+            CKEDITOR.replace('@id');
+            for (instance in CKEDITOR.instances) {
+                CKEDITOR.instances[instance].on('change', function () {
+                    CKEDITOR.instances[instance].updateElement(); //fix texrarea update value
+                });
+            }
         });
     });
 </script>

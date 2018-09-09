@@ -26,6 +26,10 @@
                 <i class="fa fa-edit"></i>
                 编辑
             </button>
+
+            <button class="btn bg-blue btn-import btn-normal btn-sm">
+                <i class="glyphicon glyphicon-import"></i>导入
+            </button>
             <button class="btn bg-blue btn-export btn-normal btn-sm">
                 <i class="glyphicon glyphicon-export"></i>导出
             </button>
@@ -83,19 +87,42 @@
 </div>
 <script>
     require(["jquery", "dataTables.select.ext", "toastr", "dataTables.bootstrap", "datatables.net-select"], function ($, dtSelectExt, toastr) {
-        define('model.opt', ["jquery"], function ($) {
+        var importUrl = '@Url.Action("Import")';
+        define('importOption', ["jquery", "bootbox"], function ($, bootbox) {
             return {
-                success: function () {
-                    var container = $('.modal-container');
-                    container.find('.modal.fade').modal('hide');
-                    toastr.options.positionClass = 'toast-center';
-                    toastr.success('提交数据成功');
-                    $(".btn-search").click();
+                url: importUrl,
+                callback: function (data) {
                 }
-            }
+            };
         });
 
         $(document).ready(function () {
+            define('model.opt', ["jquery"], function ($) {
+                return {
+                    success: function () {
+                        var container = $('.modal-container');
+                        container.find('.modal.fade').modal('hide');
+                        toastr.options.positionClass = 'toast-center';
+                        bootbox.alert({ closeButton: false, message: data });
+                        toastr.success('提交数据成功');
+                        $(".btn-search").click();
+                    }
+                }
+            });
+
+            $('.btn-import').click(function () {
+                var rows = dataTable.rows({ selected: true });
+                var url = '@Url.Action("Upload", "Import")'
+                $.getRequest(url, function (data) {
+                    var container = $('.modal-container');
+                    container.empty();
+                    container.append(data);
+                    container.show();
+                    container.find('.modal.fade').modal('show');
+                });
+            });
+
+                        
             var propertyDict = JSON.parse('@Html.Raw(dictText)');
             var cols = [];
 

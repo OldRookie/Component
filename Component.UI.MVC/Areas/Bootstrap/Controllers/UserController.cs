@@ -36,6 +36,19 @@ namespace Component.UI.MVC.Areas.Bootstrap.Controllers
             return jsonResult;
         }
 
+        public ActionResult Import(ImportVM importVM)
+        {
+            var responseResult = new ResponseResultBase();
+            responseResult.Code = ResultCode.Failtrue;
+            responseResult.ErrorMessages = new List<string>() { "Fail" };
+            var jsonResult = new JsonResult()
+            {
+                Data = responseResult,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+            return jsonResult;
+        }
+
         public ActionResult List()
         {
             var responseResult = new ResponseResultBase();

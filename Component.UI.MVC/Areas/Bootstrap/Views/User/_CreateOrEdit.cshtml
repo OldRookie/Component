@@ -31,6 +31,7 @@
                                 </div>
                                 <div class="col-sm-9">
                                     @Html.UIEditorFor(x => x.Name)
+                                    @Html.ValidationMessageFor(x => x.Name)
                                 </div>
                             </div>
 
@@ -42,6 +43,7 @@
                                 </div>
                                 <div class="col-sm-9">
                                     @Html.UIEditorFor(x => x.EMail)
+                                    @Html.ValidationMessageFor(x => x.EMail)
                                 </div>
                             </div>
                         </div>
@@ -52,6 +54,7 @@
                                 </div>
                                 <div class="col-sm-9">
                                     @Html.UIEditorFor(x => x.FullName)
+                                    @Html.ValidationMessageFor(x => x.FullName)
                                 </div>
                             </div>
 
@@ -69,18 +72,26 @@
     </div>
 </div>
 <script>
-    require(["jquery", "model.opt", "validate.unobtrusive" ], function ($, modelOpt) {
+    require(["jquery", "model.opt", "validate.unobtrusive", "app/module.user"], function ($, modelOpt) {
         var form = $(".form-modal form.action-form");
+        var parseValidation = function () {
+            form.removeData("validator");
+            form.removeData("unobtrusiveValidation");
+            $.validator.unobtrusive.parse(form);
+        }
+
         var url= '@Url.Action("Save")';
         $('.form-modal .btn-ok').click(function () {
-
-            $.validator.unobtrusive.parse(form);
+            parseValidation();
+            $("#FullName").rules('add', {
+                userFullNameValidator: "userFullNameValidator"
+            });
             var validator = form.data('validator');
             if (validator) {
                 validator.settings.ignore = ".ignore";
                 validator.cancelSubmit = true;
             }
-            form.validate();
+            var validator = form.validate();
             if (form.valid()) {
                 var data = form.serializeArray();
                 $.postRequest(url, data, function (response) {

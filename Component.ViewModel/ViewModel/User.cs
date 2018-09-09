@@ -15,9 +15,12 @@ namespace Component.Model.ViewModel
         public string Name { get; set; }
 
         [Display(Name = "邮箱")]
+        [Required]
+        [EmailAddress]
         public string EMail { get; set; }
 
         [Display(Name="全名")]
+        [Required]
         public string FullName { get; set; }
     }
 }

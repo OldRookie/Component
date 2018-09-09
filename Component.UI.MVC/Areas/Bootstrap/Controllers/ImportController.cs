@@ -9,9 +9,9 @@ namespace Component.UI.MVC.Areas.Bootstrap.Controllers
     public class ImportController : Controller
     {
         // GET: Bootstrap/Import
-        public ActionResult Index()
+        public ActionResult Upload()
         {
-            return View();
+            return PartialView("_Upload");
         }
     }
 }

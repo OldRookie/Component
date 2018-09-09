@@ -31,7 +31,7 @@
     shim: {
         'bootstrap': ["jquery"],
         "ckeditor": { "exports": "CKEDITOR" },
-        "bootbox": { "exports": "bootbox", deps: ["css!../Content/bootbox.css"] },
+        "bootbox": { "exports": "bootbox", deps: [] },
         "toastr": { "exports": "toastr", deps: ["css!../Content/toastr.css"] },
         "dataTables.bootstrap": ["bootstrap", "dataTables.responsive",
             "css!lib/bootstrap-datatables/DataTables-1.10.18/css/dataTables.bootstrap.css",
