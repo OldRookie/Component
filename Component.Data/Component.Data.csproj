@@ -51,6 +51,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="ComponentDBContext.cs" />
     <Compile Include="DBContextManager.cs" />
+    <Compile Include="DbDescriptionUpdater.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryableExtension.cs" />
   </ItemGroup>

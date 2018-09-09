@@ -128,7 +128,9 @@
             //row click
             dataTable.on('click', 'td', function () {
                 var data = dataTable.row($(this).parents('tr')).data();
-                var column = dataTable.column( $(this).index()+':visIdx' );
+                
+                var column = dataTable.column($(this).index() + ':visIdx');
+                //column.visible(true);
             });
 
             $(".btn-search").click(function () {
