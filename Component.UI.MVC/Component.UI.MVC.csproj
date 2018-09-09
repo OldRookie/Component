@@ -207,6 +207,12 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Core\HtmlExtensions.cs" />
+    <Compile Include="Framework\AuthInfoHelper.cs" />
+    <Compile Include="Framework\BaseAuthorizeAttribute.cs" />
+    <Compile Include="Framework\BaseController.cs" />
+    <Compile Include="Framework\ExtensionsHelper.cs" />
+    <Compile Include="Framework\LocalizationAttribute.cs" />
+    <Compile Include="Framework\UserAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -220,9 +226,13 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\styles.css" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\bootbox.js" />
+    <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -259,6 +269,9 @@
     <Content Include="Areas\Bootstrap\Views\Forms\AdvanceForm.cshtml" />
     <Content Include="Areas\Bootstrap\Views\User\_CreateOrEdit.cshtml" />
     <Content Include="Areas\Bootstrap\Views\User\List.cshtml" />
+    <Content Include="Areas\Bootstrap\Views\Import\_Upload.cshtml" />
+    <Content Include="Content\toastr.scss" />
+    <Content Include="Content\toastr.less" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\config.js" />
     <Content Include="Scripts\css.js" />
@@ -3441,6 +3454,8 @@
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\require.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -3557,11 +3572,11 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Bootstrap\Models\" />
     <Folder Include="Areas\Bootstrap\Views\Attachment\" />
-    <Folder Include="Areas\Bootstrap\Views\Import\" />
     <Folder Include="Areas\Bootstrap\Views\Task\" />
     <Folder Include="Content\lib\" />
     <Folder Include="Models\" />
     <Folder Include="UploadImages\" />
+    <Folder Include="Views\Base\" />
     <Folder Include="Views\List\" />
     <Folder Include="Views\Shared\EditorTemplates\" />
   </ItemGroup>

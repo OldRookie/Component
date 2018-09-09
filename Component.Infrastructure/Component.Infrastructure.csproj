@@ -63,6 +63,7 @@
     <Compile Include="SysService\ITypeFinder.cs" />
     <Compile Include="SysService\WebAppTypeFinder.cs" />
     <Compile Include="UnitOfWork\IUnitOfWork.cs" />
+    <Compile Include="Utility\CompressHelper.cs" />
     <Compile Include="Utility\JsonHelper.cs" />
     <Compile Include="Validation\ValidationExt.cs" />
     <Compile Include="Validation\ValidationResultInfo.cs" />

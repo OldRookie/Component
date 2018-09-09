@@ -82,12 +82,14 @@
     <!-- /.content -->
 </div>
 <script>
-    require(["jquery", "dataTables.select.ext", "dataTables.bootstrap", "datatables.net-select"], function ($,dtSelectExt) {
+    require(["jquery", "dataTables.select.ext", "toastr", "dataTables.bootstrap", "datatables.net-select"], function ($, dtSelectExt, toastr) {
         define('model.opt', ["jquery"], function ($) {
             return {
                 success: function () {
                     var container = $('.modal-container');
                     container.find('.modal.fade').modal('hide');
+                    toastr.options.positionClass = 'toast-center';
+                    toastr.success('提交数据成功');
                     $(".btn-search").click();
                 }
             }

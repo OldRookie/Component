@@ -19,6 +19,8 @@
         "fileinput-theme": "lib/bootstrap-fileinput/themes/explorer-fa/theme",
         "fileinput": "lib/bootstrap-fileinput/js/fileinput",
         "jquery.ext": "jquery.ext",
+        "bootbox": "bootbox",
+        "toastr": "toastr",
     },
     waitSeconds: 15,
     map: {
@@ -29,10 +31,12 @@
     shim: {
         'bootstrap': ["jquery"],
         "ckeditor": { "exports": "CKEDITOR" },
+        "bootbox": { "exports": "bootbox", deps: ["css!../Content/bootbox.css"] },
+        "toastr": { "exports": "toastr", deps: ["css!../Content/toastr.css"] },
         "dataTables.bootstrap": ["bootstrap", "dataTables.responsive",
             "css!lib/bootstrap-datatables/DataTables-1.10.18/css/dataTables.bootstrap.css",
             "css!lib/bootstrap-datatables/Responsive-2.2.2/css/responsive.dataTables.css"],
-        "datatables.net-select": [ "css!lib/bootstrap-datatables/Select-1.2.6/css/select.bootstrap.css"],
+        "datatables.net-select": ["css!lib/bootstrap-datatables/Select-1.2.6/css/select.bootstrap.css"],
         "bootstrap-datetimepicker": ["bootstrap"],
         "bootstrap.lte": ["bootstrap"],
         "bootstrap-datetimepicker-locales": ["jquery", "bootstrap-datetimepicker"],

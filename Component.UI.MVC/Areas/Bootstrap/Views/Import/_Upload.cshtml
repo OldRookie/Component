@@ -1,0 +1,97 @@
+﻿
+@model ImportVM
+<div class="modal fade form-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">
+                    Import
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="validation-summary-valid import-validation-summary-valid" data-import-valmsg-summary="true" style="display:none">
+                    <ul>
+                        <li style="display:none"></li>
+                    </ul>
+                </div>
+                <form class="import-form">
+                    <div class="form-horizontal">
+                        <div class="form-group form-group-sm">
+                            <div class="col-sm-3">
+                                @Html.UILabelFor(model => model.File)
+                            </div>
+                            <div class="col-sm-7">
+                                @Html.TextBoxFor(x => x.File, new { accept = ".xls,.xlsx", type = "file" })
+                                @Html.ValidationMessageFor(model => model.File)
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <center>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary btn-ok">Ok</button>
+                </center>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    require(["jquery", "importOption", "bootbox", "dataTables.bootstrap", "unobtrusive-ajax"], function ($, importOption, bootbox) {
+        var form = $(".form-modal form.import-form");
+        $.validator.unobtrusive.parse(form);
+        var validator = form.data('validator');
+        validator.settings.ignore = ".ignore";
+        validator.cancelSubmit = true;
+
+        $('.form-modal .btn-ok').click(function () {
+            form.validate();
+            if (form.valid()) {
+                var formData = new FormData();
+                var totalFiles = document.getElementById("File").files.length;
+                for (var i = 0; i < totalFiles; i++) {
+                    var file = document.getElementById("File").files[i];
+                    formData.append("PostedFile", file);
+                    formData.append("File", file.name);
+                }
+                var data = form.serializeArray();
+                for (var i in data) {
+                    var item = data[i];
+                    formData.append(item.name, item.value);
+                }
+
+                $.request({
+                    type: "POST",
+                    url: importOption.url,
+                    data: formData,
+                    dataType: 'json',
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        if (response.Code == 1) {
+                            importOption.callback(response.Data);
+                            $('.form-modal').modal('hide');
+                        }
+                        else {
+                            $.showInvalidError(response.ErrorMessages, '.import-validation-summary-valid');
+                        }
+                    },
+                    error: function (error) {
+                        bootbox.alert('@("Notification.FormatMessage".ResourceText())');
+                    }
+                });
+            }
+        });
+    });
+</script>
+ define('common.wf.opt', ["jquery", "bootbox"], function ($, bootbox) {
+        return {
+            success: function (workFlowTye, data) {
+                window.location.href = '@Url.Action("List", "Supplier")';
+                }
+                };
+                });
+
