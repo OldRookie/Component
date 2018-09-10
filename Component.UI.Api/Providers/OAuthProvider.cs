@@ -50,42 +50,42 @@ namespace Component.UI.Api.Providers
 
             // Cache version
 
-            if (false)
+            //if (false)
+            //{
+            //    context.SetError("invalid_grant", "The user name is not registed to Identity Server");
+            //    return Task.FromResult<object>(null);
+            //}
+
+            //if (externalClient != null && !string.IsNullOrEmpty(externalClient.UserValidationUrl))
             {
-                context.SetError("invalid_grant", "The user name is not registed to Identity Server");
-                return Task.FromResult<object>(null);
-            }
-
-                //if (externalClient != null && !string.IsNullOrEmpty(externalClient.UserValidationUrl))
+                // Start the validation. Try Cache in Application Error
                 {
-                                       // Start the validation. Try Cache in Application Error
+                    List<Claim> claimData = new List<Claim>()
                     {
-                        List<Claim> claimData = new List<Claim>()
-                        {
-                            //..
-                            new Claim(ClaimTypes.Name,context.UserName)// Actor user name
-                        };
+                        //..
+                        new Claim(ClaimTypes.Name,context.UserName)// Actor user name
+                    };
 
 
-                        ClaimsIdentity identity = new ClaimsIdentity(claimData, context.Options.AuthenticationType);
-                        identity.Label = "Intertek Identity Server";
-                        identity.Actor = new ClaimsIdentity(new List<Claim> { new Claim("client_name", "") }, context.Options.AuthenticationType);
+                    ClaimsIdentity identity = new ClaimsIdentity(claimData, context.Options.AuthenticationType);
+                    identity.Label = "Intertek Identity Server";
+                    //identity.Actor = new ClaimsIdentity(new List<Claim> { new Claim("client_name", "") }, context.Options.AuthenticationType);
 
-                        // Set property for JWT, It is Empty 
-                        IDictionary<string, string> JWTAttributeData = new Dictionary<string, string>
-                        {
+                    // Set property for JWT, It is Empty 
+                    IDictionary<string, string> JWTAttributeData = new Dictionary<string, string>
+                    {
                         //{ "IdentityServerVersion",Startup.AssemblyVersion.ToString()}
-                        };
+                    };
 
-                        var props = new AuthenticationProperties(JWTAttributeData);
-                        props.AllowRefresh = true;
+                    var props = new AuthenticationProperties(JWTAttributeData);
+                    props.AllowRefresh = true;
 
-                        var ticket = new AuthenticationTicket(identity, props);
-                        context.Validated(ticket);
-                        return base.GrantResourceOwnerCredentials(context);
-                    }// end response code
-                } // end if url 
-       
+                    var ticket = new AuthenticationTicket(identity, props);
+                    context.Validated(ticket);
+                    return base.GrantResourceOwnerCredentials(context);
+                }// end response code
+            } // end if url 
+
 
             context.SetError("invalid_grant", logMsg);
             return Task.FromResult<object>(null);
@@ -105,7 +105,6 @@ namespace Component.UI.Api.Providers
             // ExternalClientViewModel externalClientData = ExternalClientApp.FindBy(2, context.ClientId);
 
             //Cache Version
-       
 
 
             // Claim Data
@@ -118,9 +117,9 @@ namespace Component.UI.Api.Providers
 
             // Seet property for JWT
             IDictionary<string, string> data = new Dictionary<string, string>
-        {
-        //{ "IdentityServerVersion",Startup.AssemblyVersion.ToString()}
-        };
+            {
+                //{ "IdentityServerVersion",Startup.AssemblyVersion.ToString()}
+            };
             var props = new AuthenticationProperties(data);
             props.AllowRefresh = true;
 

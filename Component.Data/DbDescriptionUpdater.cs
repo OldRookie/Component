@@ -214,9 +214,7 @@ namespace Component.Data
             return parent;
         }
     }
-
-    public static class ContextExtensions
-    {
+    public static class ContextExtensions {
         public static string GetTableName(this DbContext context, Type tableType)
         {
 
@@ -240,5 +238,5 @@ namespace Component.Data
             string table = match.Groups["table"].Value;
             return table;
         }
-    }​
+    }
 }
