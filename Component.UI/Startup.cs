@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Component.Application.Query;
+using Component.Infrastructure.BaseData;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -21,6 +23,8 @@ namespace Component.UI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IBaseDataService, BaseDataService>();
+            BaseDataServiceExtension.BaseDataService = services.BuildServiceProvider().GetService<IBaseDataService>();
             services.AddMvc();
         }
 

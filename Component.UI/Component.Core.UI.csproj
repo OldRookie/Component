@@ -13,4 +13,9 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Component.Application.Query\Component.Application.Query.csproj" />
+    <ProjectReference Include="..\Component.Infrastructure\Component.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

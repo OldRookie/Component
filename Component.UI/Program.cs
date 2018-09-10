@@ -19,6 +19,8 @@ namespace Component.UI
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseSetting("detailedErrors", "true")
+                .CaptureStartupErrors(true)
                 .UseStartup<Startup>()
                 .Build();
     }

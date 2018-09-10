@@ -5,8 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="RepositoryFramework\**" />
+    <EmbeddedResource Remove="RepositoryFramework\**" />
+    <None Remove="RepositoryFramework\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="7.0.1" />
-    <PackageReference Include="NPOI" Version="2.3.0" />
+    <PackageReference Include="DotNetCore.NPOI" Version="1.2.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,7 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="RepositoryFramework\" />
     <Folder Include="UnitOfWork\" />
   </ItemGroup>
 
