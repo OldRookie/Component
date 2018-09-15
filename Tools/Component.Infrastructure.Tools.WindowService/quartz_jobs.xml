@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This file contains job definitions in schema version 2.0 format -->
+
+<job-scheduling-data xmlns="http://quartznet.sourceforge.net/JobSchedulingData"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  version="2.0">
+    <processing-directives>
+        <overwrite-existing-data>true</overwrite-existing-data>
+    </processing-directives>
+    
+    <schedule>
+        <job>
+            <name>UpdateTaskRemindTimeJob</name>
+            <group>UpdateTaskRemindTimeJobGroup</group>
+            <description>UpdateTaskRemindTimeJob</description>
+            <job-type>CTF.Job.WindowService.RequestJob,CTF.Job.WindowService</job-type>
+            <job-data-map>
+                <entry>
+                    <key>endpoint</key>
+                    <value>ScheduleJob/UpdateTaskRemindTime</value>
+                </entry>
+            </job-data-map>
+        </job>
+        <trigger>
+            <cron>
+                <name>UpdateTaskRemindTimeJobTrigger</name>
+                <group>UpdateTaskRemindTimeJobTriggerGroup</group>
+                <job-name>UpdateTaskRemindTimeJob</job-name>
+                <job-group>UpdateTaskRemindTimeJobGroup</job-group>
+                <cron-expression>0 58 23 * * ?</cron-expression>
+            </cron>
+        </trigger>
+    </schedule>
+    <schedule>
+        <job>
+            <name>TaskReminderJob</name>
+            <group>TaskReminderJobGroup</group>
+            <description>TaskReminderJob</description>
+            <job-type>CTF.Job.WindowService.RequestJob,CTF.Job.WindowService</job-type>
+            <job-data-map>
+                <entry>
+                    <key>endpoint</key>
+                    <value>ScheduleJob/TaskReminder</value>
+                </entry>
+            </job-data-map>
+        </job>
+        <trigger>
+            <cron>
+                <name>TaskReminderJobTrigger</name>
+                <group>TaskReminderJobTriggerGroup</group>
+                <job-name>TaskReminderJob</job-name>
+                <job-group>TaskReminderJobGroup</job-group>
+                <cron-expression>0/27 * * * * ?</cron-expression>
+            </cron>
+        </trigger>
+    </schedule>
+</job-scheduling-data>

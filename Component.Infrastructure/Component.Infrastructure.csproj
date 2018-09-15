@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseDataModel\DictionaryTypeModel.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="CommonHelper.cs" />
     <Compile Include="ComponentModel\GenericDictionaryTypeConverter.cs" />

@@ -52,12 +52,28 @@
     <Compile Include="ComponentDBContext.cs" />
     <Compile Include="DBContextManager.cs" />
     <Compile Include="DbDescriptionUpdater.cs" />
+    <Compile Include="Migrations\201809150401131_CreateOrUpdate.cs" />
+    <Compile Include="Migrations\201809150401131_CreateOrUpdate.Designer.cs">
+      <DependentUpon>201809150401131_CreateOrUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryableExtension.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Component.ViewModel\Component.Model.csproj">
+      <Project>{AD12C6F3-4745-4AE1-ACBF-D64C6CAC7586}</Project>
+      <Name>Component.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201809150401131_CreateOrUpdate.resx">
+      <DependentUpon>201809150401131_CreateOrUpdate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

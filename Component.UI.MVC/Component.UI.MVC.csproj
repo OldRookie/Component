@@ -214,6 +214,7 @@
     <Compile Include="Framework\BaseController.cs" />
     <Compile Include="Framework\ExtensionsHelper.cs" />
     <Compile Include="Framework\LocalizationAttribute.cs" />
+    <Compile Include="Framework\Resources\ResourcesExtension.cs" />
     <Compile Include="Framework\UserAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

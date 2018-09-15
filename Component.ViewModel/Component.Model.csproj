@@ -47,6 +47,7 @@
     <Compile Include="DataTables\DataTablesParameters.cs" />
     <Compile Include="DataTables\DataTablesResult.cs" />
     <Compile Include="DTO\WorkflowInfoDTO.cs" />
+    <Compile Include="Entity\LocaleResourceEntity.cs" />
     <Compile Include="ViewModel\ImportVM.cs" />
     <Compile Include="ViewModel\UserQueryRequest.cs" />
     <Compile Include="ViewModel\User.cs" />
@@ -59,8 +60,6 @@
     <Compile Include="WorkFlowViewMoels\BaseFormVM.cs" />
     <Compile Include="WorkFlowViewMoels\FormDetail.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Entity\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
