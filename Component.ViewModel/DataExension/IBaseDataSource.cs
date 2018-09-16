@@ -8,15 +8,9 @@ using System.Threading.Tasks;
 
 namespace Component.Model.IRepository
 {
-    public interface IBaseRepository<TEntity> where TEntity : class
+    public interface IBaseDataSource<TEntity> where TEntity : class
     {
-         void Add(TEntity entity);
-
-        void Delete(TEntity entity);
-
         TEntity Get(int id);
-
-        void Update(TEntity entity);
 
         IEnumerable<TEntity> All(bool @readonly = false);
 

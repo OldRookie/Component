@@ -48,8 +48,8 @@
     <Compile Include="DataTables\DataTablesResult.cs" />
     <Compile Include="DTO\WorkflowInfoDTO.cs" />
     <Compile Include="Entity\LocaleResourceEntity.cs" />
-    <Compile Include="IRepository\IBaseRepository.cs" />
-    <Compile Include="IRepository\LocaleResourceDataSource.cs" />
+    <Compile Include="DataExension\IBaseDataSource.cs" />
+    <Compile Include="DataExension\LocaleResourceDataSource.cs" />
     <Compile Include="ViewModel\ImportVM.cs" />
     <Compile Include="ViewModel\UserQueryRequest.cs" />
     <Compile Include="ViewModel\User.cs" />

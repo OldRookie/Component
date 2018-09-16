@@ -11,7 +11,7 @@ using Component.Model.IRepository;
 
 namespace Component.Data.Repository
 {
-    public class BaseRepository<TEntity> : IBaseRepository<TEntity>, IDisposable
+    public class BaseRepository<TEntity> : IBaseDataSource<TEntity>, IDisposable
         where TEntity : class
     {
         private readonly DbContext _dbContext;

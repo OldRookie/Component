@@ -47,8 +47,8 @@ namespace Component.Infrastructure.BaseDataModel.Service
         /// <returns></returns>
         public static string ResourceValue(this string moduleName, string code, string language = "zh-cn")
         {
-            var localeResourceRepository = ComponentContext.Current.Resolve<IBaseRepository<LocaleResource>>();
-            var localeResource = localeResourceRepository.FirstOrDefault(x => x.ResourceModule == moduleName && code == x.ResourceCode && language == x.Language);
+            var localeResourceDataSource = ComponentContext.Current.Resolve<IBaseDataSource<LocaleResource>>();
+            var localeResource = localeResourceDataSource.FirstOrDefault(x => x.ResourceModule == moduleName && code == x.ResourceCode && language == x.Language);
             if (localeResource != null)
             {
                 return localeResource.ResourceValue;
@@ -64,8 +64,8 @@ namespace Component.Infrastructure.BaseDataModel.Service
         /// <returns></returns>
         public static string ResourceValue(this string fullModuleCode, string language = "zh-cn")
         {
-            var localeResourceRepository = ComponentContext.Current.Resolve<IBaseRepository<LocaleResource>>();
-            var localeResource = localeResourceRepository.FirstOrDefault(x => (x.ResourceModule + "." + x.ResourceCode) == fullModuleCode
+            var localeResourceDataSource = ComponentContext.Current.Resolve<IBaseDataSource<LocaleResource>>();
+            var localeResource = localeResourceDataSource.FirstOrDefault(x => (x.ResourceModule + "." + x.ResourceCode) == fullModuleCode
                     && language == x.Language);
             if (localeResource != null)
             {
