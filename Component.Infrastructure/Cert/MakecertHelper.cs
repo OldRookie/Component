@@ -24,10 +24,26 @@ namespace Component.Infrastructure.Cert
             string makecert = "makecert.exe";
             param.subjectName = $"CN=\"{param.subjectName}\"";
             var certArguments = string.Empty;
-            certArguments += $" -n {param.subjectName} -pe -r -a {param.alg}";
+            if (param.selfSigned)
+            {
+                certArguments += $" -r";
+            }
+            certArguments += $" -n {param.subjectName} -pe -a {param.alg}";
             if (param.cy.HasValue)
             {
                 certArguments += $" -cy {param.cy.Value.ToString()}";
+            }
+            if (!string.IsNullOrEmpty(param.issuerCertName))
+            {
+                certArguments += $" -iv {param.issuerCertName}.pvk -ic {param.issuerCertName}.cer";
+            }
+            if (param.keyType.HasValue)
+            {
+                certArguments += $" -sky {param.keyType.Value.ToString()}";
+            }
+            if (!string.IsNullOrEmpty(param.eku))
+            {
+                certArguments += $" -eku {param.eku}";
             }
             certArguments += $" -sv {param.certFileName}.pvk {param.certFileName}.cer";
 
@@ -68,6 +84,7 @@ namespace Component.Infrastructure.Cert
         {
             password = "password";
             alg = "sha512";
+            selfSigned = true;
 
         }
         public string subjectName { get; set; }
@@ -81,5 +98,11 @@ namespace Component.Infrastructure.Cert
         public string alg { get; set; }
 
         public CertType? cy { get; set; }
+
+        public string issuerCertName { get; set; }
+
+        public string eku { get; set; }
+
+        public bool selfSigned { get; set; }
     }
 }

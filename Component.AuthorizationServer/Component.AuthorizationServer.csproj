@@ -171,6 +171,16 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="packages.config" />
+    <Content Include="SSLCerts\ComponentClient.cer" />
+    <Content Include="SSLCerts\ComponentClient.pfx" />
+    <Content Include="SSLCerts\ComponentClient.pvk" />
+    <Content Include="SSLCerts\ComponentRootCA.cer" />
+    <Content Include="SSLCerts\ComponentRootCA.pfx" />
+    <Content Include="SSLCerts\ComponentRootCA.pvk" />
+    <Content Include="SSLCerts\ComponentServer.cer" />
+    <Content Include="SSLCerts\ComponentServer.pfx" />
+    <Content Include="SSLCerts\ComponentServer.pvk" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
