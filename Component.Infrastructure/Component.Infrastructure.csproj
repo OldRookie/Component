@@ -44,6 +44,8 @@
   <ItemGroup>
     <Compile Include="BaseDataModel\DictionaryTypeModel.cs" />
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Cert\MakecertHelper.cs" />
+    <Compile Include="CMD\CMDHelper.cs" />
     <Compile Include="CommonHelper.cs" />
     <Compile Include="ComponentModel\GenericDictionaryTypeConverter.cs" />
     <Compile Include="ComponentModel\GenericListTypeConverter.cs" />
@@ -94,6 +96,16 @@
     <PackageReference Include="Quartz.Plugins">
       <Version>3.0.6</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Cert\Kits\cert2spc.exe" />
+    <Content Include="Cert\Kits\certmgr.exe" />
+    <Content Include="Cert\Kits\makecat.exe" />
+    <Content Include="Cert\Kits\pvk2pfx.exe" />
+    <Content Include="Cert\Kits\signtool.exe" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Cert\Kits\signtool.exe.manifest" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace Component.Infrastructure.Security
 {
@@ -160,6 +161,38 @@ namespace Component.Infrastructure.Security
             return content;
         }
 
+
+        public static string GetPrivateKey(string priKeyFile, string keyPwd)
+        {
+            var pc = new X509Certificate2(priKeyFile, keyPwd, X509KeyStorageFlags.MachineKeySet);
+            return pc.PrivateKey.ToXmlString(true);
+        }
+
+        public static string GetPublicKey(string pubKeyFile)
+        {
+            var pc = new X509Certificate2(pubKeyFile);
+            return pc.PublicKey.Key.ToXmlString(true);
+        }
+
+        public static void ExportPrivateKey(string priKeyFile, string keyPwd,string fileName)
+        {
+            X509Certificate2 cert = new X509Certificate2(priKeyFile, keyPwd, X509KeyStorageFlags.Exportable | X509KeyStorageFlags.PersistKeySet);
+            var xml= cert.PrivateKey.ToXmlString(true);
+
+            XmlDocument xdoc = new XmlDocument();
+            xdoc.InnerXml=xml;
+            xdoc.Save(fileName);
+        }
+
+        public static void ExportPublicKey(string pubKeyFile, string fileName, string keyPwd="password")
+        {
+            X509Certificate2 cert = new X509Certificate2(pubKeyFile, keyPwd, X509KeyStorageFlags.Exportable | X509KeyStorageFlags.PersistKeySet);
+            var xml= cert.PublicKey.Key.ToXmlString(false);
+
+            XmlDocument xdoc = new XmlDocument();
+            xdoc.InnerXml = xml;
+            xdoc.Save(fileName);
+        }
         #endregion
 
         #region X509 RSA
