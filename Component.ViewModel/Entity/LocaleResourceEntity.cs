@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Component.Infrastructure.BaseDataModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -58,9 +59,7 @@ namespace Component.Model.Entity
         public LocaleResourceTypeCode LocaleResourceType { get; set; }
     }
 
-    /// <summary>
-    /// 本地环境资源
-    /// </summary>
-    public enum LocaleResourceTypeCode
-    { }
+    public enum LocaleResourceTypeCode {
+
+    }
 }

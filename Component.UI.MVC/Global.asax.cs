@@ -20,7 +20,7 @@ namespace Component.UI.MVC
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            Bootstrapper.Initialize();
+            ComponentContext.Current.Initialize();
         }
     }
 }

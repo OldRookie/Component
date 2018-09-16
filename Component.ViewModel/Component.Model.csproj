@@ -48,6 +48,8 @@
     <Compile Include="DataTables\DataTablesResult.cs" />
     <Compile Include="DTO\WorkflowInfoDTO.cs" />
     <Compile Include="Entity\LocaleResourceEntity.cs" />
+    <Compile Include="IRepository\IBaseRepository.cs" />
+    <Compile Include="IRepository\LocaleResourceDataSource.cs" />
     <Compile Include="ViewModel\ImportVM.cs" />
     <Compile Include="ViewModel\UserQueryRequest.cs" />
     <Compile Include="ViewModel\User.cs" />
@@ -60,6 +62,11 @@
     <Compile Include="WorkFlowViewMoels\BaseFormVM.cs" />
     <Compile Include="WorkFlowViewMoels\FormDetail.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Component.Infrastructure\Component.Infrastructure.csproj">
+      <Project>{AFC667FD-B389-4D91-B216-BB536650553E}</Project>
+      <Name>Component.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

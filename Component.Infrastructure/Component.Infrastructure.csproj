@@ -47,8 +47,11 @@
     <Compile Include="Cert\MakecertHelper.cs" />
     <Compile Include="CMD\CMDHelper.cs" />
     <Compile Include="CommonHelper.cs" />
+    <Compile Include="ComponentContext.cs" />
     <Compile Include="ComponentModel\GenericDictionaryTypeConverter.cs" />
     <Compile Include="ComponentModel\GenericListTypeConverter.cs" />
+    <Compile Include="DependencyManagement\ContainerManager.cs" />
+    <Compile Include="DependencyManagement\IDependencyRegistrar.cs" />
     <Compile Include="Description\DescriptionExtension.cs" />
     <Compile Include="Excel\ExcelHelper.cs" />
     <Compile Include="File\FolderHelper.cs" />
@@ -73,11 +76,14 @@
     <Compile Include="Validation\ValidationResultInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DependencyManagement\" />
+    <Folder Include="IOC\" />
     <Folder Include="RepositoryFramework\" />
     <Folder Include="Schedule\" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Autofac">
+      <Version>4.8.1</Version>
+    </PackageReference>
     <PackageReference Include="AutoMapper">
       <Version>7.0.1</Version>
     </PackageReference>

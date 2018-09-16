@@ -7,10 +7,11 @@ using System.Data.Entity;
 using System.Linq.Expressions;
 using Component.ViewModel;
 using System.Text.RegularExpressions;
+using Component.Model.IRepository;
 
 namespace Component.Data.Repository
 {
-    public class BaseRepository<TEntity> : IDisposable
+    public class BaseRepository<TEntity> : IBaseRepository<TEntity>, IDisposable
         where TEntity : class
     {
         private readonly DbContext _dbContext;
@@ -111,8 +112,7 @@ namespace Component.Data.Repository
             return query.FirstOrDefault(predicate);
         }
 
-
-        public IQueryable<TEntity> IQueryable(Pagination pagination) {
+        public IEnumerable<TEntity> IQueryable(Pagination pagination) {
             bool isAsc = pagination.sord.ToLower() == "asc" ? true : false;
             string[] _order = pagination.sidx.Split(',');
             MethodCallExpression resultExp = null;
