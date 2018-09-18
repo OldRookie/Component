@@ -1,0 +1,28 @@
+﻿
+@using Webdiyer.WebControls.Mvc
+@model Webdiyer.WebControls.Mvc.PagedList<ImgInfoVM>
+<div class="row col-sm-offset-1">
+    <div class="form-group form-group-sm">
+        <div class="col-sm-10 container">
+            @foreach (var item in Model)
+            {
+                @Html.Partial("_ImgItem", item)
+            }
+        </div>
+    </div>
+    <div class="row picture-item">
+    </div>
+</div>
+
+<div class="text-center">
+    @Ajax.Pager(Model, new PagerOptions
+    {
+        PageIndexParameterName = "pageNum",
+        ActionName="QueryImgItem",
+        ContainerTagName = "ul", CssClass = "pagination",
+        CurrentPagerItemTemplate = "<li class='active'><a href='#'>{0}</a></li>",
+        DisabledPagerItemTemplate = "<li class='disabled'><a>{0}</a></li>",
+        PagerItemTemplate = "<li>{0}</li>", Id = "bootstrappager"
+    },
+    new MvcAjaxOptions { UpdateTargetId = "pictures", HttpMethod = "Post", DataFormId = "searchForm" })
+</div>

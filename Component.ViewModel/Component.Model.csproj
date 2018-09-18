@@ -50,6 +50,8 @@
     <Compile Include="Entity\LocaleResourceEntity.cs" />
     <Compile Include="DataExension\IBaseDataSource.cs" />
     <Compile Include="DataExension\LocaleResourceDataSource.cs" />
+    <Compile Include="ViewModel\ImgInfoVM.cs" />
+    <Compile Include="ViewModel\ImgItemQueryRequest.cs" />
     <Compile Include="ViewModel\ImportVM.cs" />
     <Compile Include="ViewModel\UserQueryRequest.cs" />
     <Compile Include="ViewModel\User.cs" />

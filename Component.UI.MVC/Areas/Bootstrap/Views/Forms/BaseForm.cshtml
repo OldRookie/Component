@@ -9,21 +9,22 @@
 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <div class="content-header">
-        <h1>
-            BaseForm
-            @*<small>Control panel</small>*@
-        </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Forms</a></li>
-            <li class="active">Base Form</li>
-        </ol>
+    <div class="content-header clearfix">
+        <h4 class="pull-left">
+            @ViewBag.Title
+        </h4>
+        <div class="pull-right btn-group-sm">
+            <button class="btn bg-blue btn-normal btn-sm btn-save">
+                <i class="fa fa-plus-square"></i>
+                保存
+            </button>
+        </div>
     </div>
 
     <!-- Main content -->
-    <div class="content">
+    <div class="content" style="padding-top:0px;">
         <div class="form-horizontal">
-            <form id="viewForm">
+            <form id="applyForm">
                 <div class="panel-group">
                     <div class="panel panel-success">
                         <div class="panel-heading">
@@ -70,7 +71,10 @@
                         <div class="panel-heading">
                             表单详情信息
                         </div>
-                        <div class="panel-body">
+                        <div class="panel-body item-container">
+                            <div class="form-group form-group-sm" style="margin-left: 0;">
+                                <button type="button" class="btn btn-new btn-primary btn-sm add-detail-item"><i class="fa fa-plus"></i></button>
+                            </div>
                             @foreach (var item in Model.FormDetail)
                             {
                                 @Html.Partial("_FormDetail", item)
@@ -85,3 +89,37 @@
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+<script>
+    require(["jquery", "bootbox", "validate.unobtrusive"], function ($, bootbox) {
+        var form = $('#applyForm');
+        var formContainer = $('.form-container');
+        var parseValidation = function () {
+            form.removeData("validator");
+            form.removeData("unobtrusiveValidation");
+            $.validator.unobtrusive.parse(form);
+        }
+
+        form.on('click', '.add-detail-item', function () {
+            var container = $('.item-container');
+            $.getRequest('@Url.Action("CreateOrUpdateFormDetailItem")', function (data) {
+                container.append(data);
+                parseValidation();
+            });
+        });
+
+        form.on('click', '.close-item', function () {
+            $(this).closest('.panel').remove();
+        });
+
+        $('.btn-save').click(function () {
+            var validator = form.validate();
+            if (!form.valid()) {
+                return false;
+            };
+
+            $.postRequest('@Url.Action("SaveBaseForm")', form.serializeArray(), function () {
+
+            });
+        });
+    })
+</script>

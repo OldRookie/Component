@@ -1,0 +1,5 @@
+﻿@model List<ImgInfoVM>
+@foreach (var item in Model)
+{
+    @Html.Partial("_ImgItem", item)
+}

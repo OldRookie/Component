@@ -4,6 +4,7 @@
         "jquery": "jquery-3.3.1.min",
         "validator": "jquery.validate.js?v=1",
         "validate.unobtrusive": "jquery.validate.unobtrusive.js?v=1",
+        "unobtrusive-ajax": "jquery.unobtrusive-ajax.js?v=1",
         "datatables.net": "lib/bootstrap-datatables/DataTables-1.10.18/js/jquery.dataTables",
         "dataTables.bootstrap": "lib/bootstrap-datatables/DataTables-1.10.18/js/dataTables.bootstrap",
         "dataTables.responsive": "lib/bootstrap-datatables/Responsive-2.2.2/js/dataTables.responsive",
@@ -49,6 +50,8 @@
         "validate.unobtrusive": ["validator"],
         "validator": ["jquery"],
         "iCheck": ["jquery"],
+        "unobtrusive-ajax": ["jquery"],
+        "Webdiyer": ["jquery"],
         //...
     }
 };

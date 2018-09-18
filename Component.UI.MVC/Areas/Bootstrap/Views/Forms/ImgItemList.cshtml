@@ -1,0 +1,60 @@
+﻿@using Webdiyer.WebControls.Mvc;
+@*@{Html.RegisterMvcPagerScriptResource();}*@
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <h1>
+            ImgItemList
+            @*<small>Control panel</small>*@
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Forms</a></li>
+            <li class="active">ImgItemList</li>
+        </ol>
+    </div>
+
+    <!-- Main content -->
+    <div class="content">
+        <div class="form-horizontal">
+            <div class="panel-group">
+                <div class="panel panel-success">
+                    @using (Ajax.BeginForm("QueryImgItem", new RouteValueDictionary { { "id", "" } },
+                        new AjaxOptions { UpdateTargetId = "pictures", InsertionMode = InsertionMode.Replace }, new RouteValueDictionary { { "id", "searchForm" } }))
+                    {
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="form-group form-group-sm col-sm-12">
+                                    <div class="col-sm-2">
+                                        @Html.UILabel("名字")
+                                    </div>
+                                    <div class="col-sm-10">
+                                        @Html.TextBox("name","", new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row text-center ">
+                                <button type="submit" style="min-width:100px" class="btn btn-search btn-normal btn-sm btn-primary">查询</button>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="panel panel-success">
+                    <div class="panel-body">
+                        <div class="col-sm-12">
+                            <div id="pictures">
+                                @Html.Action("QueryImgItem", new { pageNum = 1 })
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.content -->
+</div>
+<script>
+    require(["unobtrusive-ajax", "Webdiyer"], function ($) {
+
+    })
+</script>
