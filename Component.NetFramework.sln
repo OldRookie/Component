@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Component.Infrastructure", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Component.Application", "Component.Application\Component.Application.csproj", "{1024B0D6-A180-4DEE-A1F7-C04888D4E2C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Component.Application.Query", "Component.Application.Query\Component.Application.Query.csproj", "{31C4D268-0DA4-41D6-A453-715B1B39EC23}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Component.Application.Read", "Component.Application.Query\Component.Application.Read.csproj", "{31C4D268-0DA4-41D6-A453-715B1B39EC23}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Component.Data", "Component.Data\Component.Data.csproj", "{9A5F9093-9B72-46B0-B4D2-102E4CFB15C9}"
 EndProject

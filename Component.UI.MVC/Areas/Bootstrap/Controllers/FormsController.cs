@@ -1,4 +1,5 @@
-﻿using Component.Model.DataTables;
+﻿using Component.Application.Read;
+using Component.Model.DataTables;
 using Component.Model.ViewModel;
 using Component.UI.MVC.Framework;
 using Component.ViewModel;
@@ -25,9 +26,9 @@ namespace Component.UI.MVC.Areas.Bootstrap.Controllers
         public ActionResult BaseForm()
         {
             var model = new BaseFormVM();
-            model.FormDetail = new List<FormDetail>()
+            model.FormDetail = new List<FormDetailVM>()
             {
-                new FormDetail(),new FormDetail()
+                new FormDetailVM(),new FormDetailVM()
             };
             return View(model);
         }
@@ -64,15 +65,60 @@ namespace Component.UI.MVC.Areas.Bootstrap.Controllers
             return View();
         }
 
+        public ActionResult Export()
+        {
+            var fileName = "数据列表.xlsx";
+            var items = new List<ImgInfoVM>();
+            for (int i = 0; i < 20; i++)
+            {
+                items.Add(new ImgInfoVM()
+                {
+                    UserName = "UserName" + i.ToString(),
+                    CreatorTime = DateTime.Now,
+                    FileFullPath = "~/UploadImages/20080405144414541.png",
+                    FileName = "FileName" + i.ToString(),
+                    SerialNumber = "SerialNumber" + i.ToString(),
+                    Url = ("/UploadImages/20080405144414541.png")
+                });
+            }
+
+            var fileStream = new ImgInfoReadApp().Export(items);
+            //fileStream.Position = 0;
+            return File(fileStream, "application/ms-excel", fileName);
+        }
+
+
+        public ActionResult ExportComplexData()
+        {
+            var fileName = "复杂数据.xlsx";
+            var items = new List<ImgInfoExportVM>();
+            for (int i = 0; i < 20; i++)
+            {
+                items.Add(new ImgInfoExportVM()
+                {
+                    UserName = "UserName" + i.ToString(),
+                    CreatorTime = DateTime.Now,
+                    FileFullPath = "~/UploadImages/20080405144414541.png",
+                    FileName = "FileName" + i.ToString(),
+                    SerialNumber = "SerialNumber" + i.ToString(),
+                    Url = ("/UploadImages/20080405144414541.png")
+                });
+            }
+
+            var fileStream = new ImgInfoReadApp().ExportComplexData(items);
+            //fileStream.Position = 0;
+            return File(fileStream, "application/ms-excel", fileName);
+        }
         public ActionResult QueryImgItem(string name, int pageNum = 1)
         {
             var items = new List<ImgInfoVM>();
             for (int i = 0; i < 20; i++)
             {
-                items.Add(new ImgInfoVM() {
+                items.Add(new ImgInfoVM()
+                {
                     UserName = "UserName" + i.ToString(),
                     CreatorTime = DateTime.Now,
-                    FileFullPath = "",
+                    FileFullPath = "~/UploadImages/20080405144414541.png",
                     FileName = "FileName" + i.ToString(),
                     SerialNumber = "SerialNumber" + i.ToString(),
                     Url = ("/UploadImages/20080405144414541.png")
@@ -91,7 +137,7 @@ namespace Component.UI.MVC.Areas.Bootstrap.Controllers
 
         public ActionResult CreateOrUpdateFormDetailItem()
         {
-            return PartialView("_FormDetail", new FormDetail());
+            return PartialView("_FormDetail", new FormDetailVM());
         }
 
         public ActionResult ImgItemList()

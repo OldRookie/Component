@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=7.0.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Component.UI.MVC\Bin\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Quartz, Version=3.0.6.0, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
       <HintPath>..\packages\Quartz.3.0.6\lib\net452\Quartz.dll</HintPath>
     </Reference>
@@ -47,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AttachmentApp.cs" />
+    <Compile Include="BaseFormApp.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Job\SimpleJob.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -55,9 +60,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Component.Data.Repository\Component.Data.Repository.csproj">
+      <Project>{BB68004F-81ED-4A50-8AEF-86D385EEABB5}</Project>
+      <Name>Component.Data.Repository</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Component.Infrastructure\Component.Infrastructure.csproj">
       <Project>{afc667fd-b389-4d91-b216-bb536650553e}</Project>
       <Name>Component.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Component.ViewModel\Component.Model.csproj">
+      <Project>{AD12C6F3-4745-4AE1-ACBF-D64C6CAC7586}</Project>
+      <Name>Component.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

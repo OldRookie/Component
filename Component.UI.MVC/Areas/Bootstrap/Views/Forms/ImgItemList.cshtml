@@ -34,6 +34,8 @@
                             </div>
                             <div class="row text-center ">
                                 <button type="submit" style="min-width:100px" class="btn btn-search btn-normal btn-sm btn-primary">查询</button>
+                                <button type="button" style="min-width:100px" class="btn btn-export btn-normal btn-sm btn-primary">导出</button>
+                                <button type="button" style="min-width:100px" class="btn btn-export-complex-data btn-normal btn-sm btn-primary">导出复杂数据</button>
                             </div>
                         </div>
                     }
@@ -54,7 +56,15 @@
     <!-- /.content -->
 </div>
 <script>
-    require(["unobtrusive-ajax", "Webdiyer", "Lightbox"], function ($) {
+    require(["jquery","unobtrusive-ajax", "Webdiyer", "Lightbox"], function ($) {
+        $('.btn-export').click(function () {
+            var form = $('#searchForm').serialize();
+            window.open('@Url.Action("Export")' + "?" + form)
+        });
 
+        $('.btn-export-complex-data').click(function () {
+            var form = $('#searchForm').serialize();
+            window.open('@Url.Action("ExportComplexData")' + "?" + form)
+        });
     })
 </script>

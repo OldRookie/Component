@@ -26,6 +26,8 @@ namespace Component.Data
             base.OnModelCreating(modelBuilder);
         }
 
-        public DbSet<LocaleResource> DrawingMgtWF { get; set; }
+        public DbSet<LocaleResource> LocaleResource { get; set; }
+        public DbSet<BaseForm> BaseForm { get; set; }
+        public DbSet<FormDetail> FormDetail { get; set; }
     }
 }

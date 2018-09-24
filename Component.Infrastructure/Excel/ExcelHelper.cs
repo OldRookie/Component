@@ -2,6 +2,7 @@
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.SS.Util;
+using NPOI.XSSF.UserModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,7 +11,8 @@ using System.Text;
 
 namespace Component.Infrastructure.Excel
 {
-    public static class ExcelHelper {
+    public static class ExcelHelper
+    {
         public static List<T> ReadExcel<T>(Stream excelStream, string sheetName, Dictionary<string, int> nameToindex,
             int startRow = 0) where T : new()
         {
@@ -39,7 +41,7 @@ namespace Component.Infrastructure.Excel
                     {
                         var columnInex = nameToindex[prop.Name];
                         Type type = Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType;
-                        var cellVal = GetCellData(row.GetCell(columnInex), type.Name);
+                        var cellVal = GetCellData(row.GetCell(columnInex), type.FullName);
                         if (cellVal != null
                             && !string.IsNullOrEmpty(cellVal.ToString()))
                         {
@@ -99,47 +101,24 @@ namespace Component.Infrastructure.Excel
             }
         }
 
-        public static void SetCellData(this HSSFCell cell, string propName, object obj)
+        public static void SetCellData(this ICell cell, string propName, object obj)
         {
             var prop = obj.GetType().GetProperty(propName);
             if (prop != null)
             {
                 var value = prop.GetValue(obj, null);
-                if (prop.PropertyType.FullName.Contains("DateTime"))
-                {
-                    var dataformat = cell.Sheet.Workbook.CreateDataFormat();
-                    cell.CellStyle.DataFormat = dataformat.GetFormat("yyyy/MM/dd");
-                }
-                else if (prop.PropertyType.FullName.Contains("Int"))
-                {
-                    cell.SetCellType(CellType.String);
-                }
-                else if (prop.PropertyType.FullName.Contains("String"))
-                {
-                    cell.SetCellType(CellType.String);
-                }
-                else if (prop.PropertyType.FullName.Contains("Double"))
-                {
-                    cell.SetCellType(CellType.String);
-                }
 
                 if (value == null)
                 {
-
                     return;
                 }
+                cell.CellStyle.DataFormat = 0;
 
                 Type propType = Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType;
 
-                var method = typeof(HSSFCell).GetMethods()
-                    .FirstOrDefault(x => x.Name == "SetCellValue"
-                            && x.GetParameters().Any(y => y.ParameterType == propType));
-                if (method != null)
+                if (prop.PropertyType.FullName.Contains("Int"))
                 {
-                    method.Invoke(cell, new object[] { value });
-                }
-                else if (prop.PropertyType.FullName.Contains("Int"))
-                {
+                    cell.SetCellType(CellType.String);
                     if (Nullable.GetUnderlyingType(prop.PropertyType) == null)
                     {
                         cell.SetCellValue(((int?)value).Value.ToString());
@@ -151,7 +130,7 @@ namespace Component.Infrastructure.Excel
                 }
                 else if (prop.PropertyType.FullName.Contains("Double"))
                 {
-                    cell.SetCellType(CellType.Numeric);
+                    cell.SetCellType(CellType.String);
                     if (Nullable.GetUnderlyingType(prop.PropertyType) == null)
                     {
                         cell.SetCellValue(((double?)value).Value);
@@ -164,12 +143,47 @@ namespace Component.Infrastructure.Excel
                 else if (prop.PropertyType.FullName.Contains("DateTime")
                     && Nullable.GetUnderlyingType(prop.PropertyType) != null)
                 {
-                    cell.SetCellValue(((DateTime?)value).Value);
+                    var dateFormat = "yyyy/MM/dd HH:mm:ss";
+                    var builtinFormatId = HSSFDataFormat.GetBuiltinFormat(dateFormat);
+
+                    if (Nullable.GetUnderlyingType(prop.PropertyType) == null)
+                    {
+                        cell.SetCellValue(((DateTime?)value).Value);
+                    }
+                    else
+                    {
+                        cell.SetCellValue((DateTime)value);
+                    }
+                    cell.SetCellType(CellType.Numeric);
+
+                    var prevCell = cell.Sheet.GetRow(cell.RowIndex - 1).GetCell(cell.ColumnIndex);
+                    if (prevCell == null || prevCell.CellStyle.DataFormat == 0)
+                    {
+                        cell.CellStyle = cell.Sheet.Workbook.CreateCellStyle();
+                    }
+                    else
+                    {
+                        cell.CellStyle = prevCell.CellStyle;
+                    }
+                    if (builtinFormatId != -1)
+                    {
+                        cell.CellStyle.DataFormat = builtinFormatId;
+                    }
+                    else
+                    {
+                        // not a built-in format, so create a new one
+                        var dataformat = cell.Sheet.Workbook.CreateDataFormat();
+                        cell.CellStyle.DataFormat = dataformat.GetFormat(dateFormat);
+                    }
+                }
+                else
+                {
+                    cell.SetCellValue(value.ToString());
                 }
             }
         }
 
-        public static void AutoSizeALLColumn(this HSSFSheet sheet, int maxColumn)
+        public static void AutoSizeALLColumn(this ISheet sheet, int maxColumn)
         {
             for (int i = 0; i <= maxColumn; i++)
             {
@@ -206,7 +220,7 @@ namespace Component.Infrastructure.Excel
             }
         }
 
-        public static void SetDropDownList(this HSSFSheet sheet, string[] datas, HSSFWorkbook workbook,
+        public static void SetDropDownList(this ISheet sheet, string[] datas, XSSFWorkbook workbook,
             CellRangeAddressList addressList, string formulaName)
         {
             var hiddenSheetName = "HiddenDataSource" + DateTime.Now.ToString("yyyyMMddHHmmss");
@@ -228,6 +242,34 @@ namespace Component.Infrastructure.Excel
             DVConstraint constraint = DVConstraint.CreateFormulaListConstraint(formulaName);
             HSSFDataValidation dataValidate = new HSSFDataValidation(addressList, constraint);
             sheet.AddValidationData(dataValidate);
+        }
+
+        public static void SetXXSDropDownList(this ISheet sheet, string[] datas, XSSFWorkbook workbook,
+           CellRangeAddressList addressList, string formulaName)
+        {
+            var hiddenSheetName = "HiddenDataSource" + DateTime.Now.ToString("yyyyMMddHHmmss");
+            ISheet CourseSheet = workbook.CreateSheet(hiddenSheetName);
+            workbook.SetSheetHidden(workbook.GetSheetIndex(hiddenSheetName), true);
+            //CourseSheet.CreateRow(0).CreateCell(0).SetCellValue("");
+            IRow row = null;
+            ICell cell = null;
+            for (int i = 0; i < datas.Length; i++)
+            {
+                row = CourseSheet.CreateRow(i);
+                cell = row.CreateCell(0);
+                cell.SetCellValue(datas[i]);
+            }
+
+            XSSFDataValidationHelper dvHelper = new XSSFDataValidationHelper((XSSFSheet)sheet);
+            XSSFDataValidationConstraint dvConstraint = (XSSFDataValidationConstraint)dvHelper
+                    .CreateFormulaListConstraint(formulaName);
+
+            IName range = workbook.CreateName();
+            range.RefersToFormula = string.Format("{0}!$A$1:$A${1}", hiddenSheetName, datas.Length);
+            range.NameName = formulaName;
+
+            XSSFDataValidation validation = (XSSFDataValidation)dvHelper.CreateValidation(dvConstraint, addressList);
+            sheet.AddValidationData(validation);
         }
     }
 }

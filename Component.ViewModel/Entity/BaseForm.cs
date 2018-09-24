@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace Component.ViewModel.WorkFlowViewMoels
+namespace Component.Model.Entity
 {
-    public class BaseFormVM
+    public class BaseForm
     {
         public string Id { get; set; }
 
@@ -13,11 +15,11 @@ namespace Component.ViewModel.WorkFlowViewMoels
         public string Name { get; set; }
 
         [Display(Name = "日期")]
-        public DateTime? FormDateTime{ get; set; }
+        public DateTime? FormDateTime { get; set; }
 
         [Display(Name = "金额")]
         public int? Money { get; set; }
 
-        public List<FormDetailVM> FormDetail { get; set; }
+        public List<FormDetail> FormDetail { get; set; }
     }
 }

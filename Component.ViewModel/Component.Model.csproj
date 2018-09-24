@@ -47,10 +47,13 @@
     <Compile Include="DataTables\DataTablesParameters.cs" />
     <Compile Include="DataTables\DataTablesResult.cs" />
     <Compile Include="DTO\WorkflowInfoDTO.cs" />
+    <Compile Include="Entity\BaseForm.cs" />
+    <Compile Include="Entity\FormDetail.cs" />
     <Compile Include="Entity\LocaleResourceEntity.cs" />
     <Compile Include="DataExension\IBaseDataSource.cs" />
     <Compile Include="DataExension\LocaleResourceDataSource.cs" />
     <Compile Include="Entity\Permission.cs" />
+    <Compile Include="ViewModel\ImgInfoExportVM.cs" />
     <Compile Include="ViewModel\ImgInfoVM.cs" />
     <Compile Include="ViewModel\ImgItemQueryRequest.cs" />
     <Compile Include="ViewModel\ImportVM.cs" />
@@ -63,7 +66,7 @@
     <Compile Include="ViewModel\QueryRequest.cs" />
     <Compile Include="WorkFlowViewMoels\AdvanceForm.cs" />
     <Compile Include="WorkFlowViewMoels\BaseFormVM.cs" />
-    <Compile Include="WorkFlowViewMoels\FormDetail.cs" />
+    <Compile Include="WorkFlowViewMoels\FormDetailVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Component.Infrastructure\Component.Infrastructure.csproj">
