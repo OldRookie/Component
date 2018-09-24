@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.WebPages;
 
 namespace Component.UI.MVC.Framework
 {
@@ -19,24 +20,36 @@ namespace Component.UI.MVC.Framework
             if (filterContext.RouteData.Values["Lang"] != null &&
                      !string.IsNullOrWhiteSpace(filterContext.RouteData.Values["Lang"].ToString()))
             {
-                ///从路由数据(url)里设置语言                
-                switch (filterContext.RouteData.Values["Lang"].ToString().ToUpper())
-                {
-                    case "ZH-CN":
-                    case "ZH-TW":
-                    case "EN-US":
-                        {
-                            _language = filterContext.RouteData.Values["Lang"].ToString();
-                            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(_language);
-                            Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(_language);
-                            break;
-                        }
-
-                }
+                _language = filterContext.RouteData.Values["Lang"].ToString().ToUpper();
             }
             else
             {
+                _language= CookieHelper.GetLanguageFromCookie(filterContext.HttpContext.Request.Cookies);
+            }
 
+            ///从路由数据(url)里设置语言                
+            switch (filterContext.RouteData.Values["Lang"].ToString().ToUpper())
+            {
+                case "ZH-CN":
+                case "ZH-TW":
+                case "EN-US":
+                    {
+                        _language = filterContext.RouteData.Values["Lang"].ToString();
+                        Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(_language);
+                        Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(_language);
+                        break;
+                    }
+
+            }
+
+            filterContext.RouteData.Values["Lang"] = _language;
+
+            /// 把设置保存进cookie
+            if (!_language.IsEmpty()) {
+
+                HttpCookie _cookie = CookieHelper.UpdateLanguageToCookie(_language, filterContext.HttpContext.Request.Cookies);
+                _cookie.Expires = DateTime.Now.AddYears(1);
+                filterContext.HttpContext.Response.SetCookie(_cookie);
             }
 
             base.OnActionExecuting(filterContext);

@@ -217,6 +217,7 @@
     <Compile Include="Framework\BaseController.cs" />
     <Compile Include="Framework\ExtensionsHelper.cs" />
     <Compile Include="Framework\LocalizationAttribute.cs" />
+    <Compile Include="Framework\OperateCookie.cs" />
     <Compile Include="Framework\Resources\ResourcesExtension.cs" />
     <Compile Include="Framework\UserAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -3709,6 +3710,7 @@
     <Folder Include="Areas\Bootstrap\Views\Task\" />
     <Folder Include="Content\lib\" />
     <Folder Include="Models\" />
+    <Folder Include="NewFolder1\" />
     <Folder Include="UploadImages\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\List\" />

@@ -1,6 +1,7 @@
 ﻿@using Component.UI.MVC.Core;
 @using Component.ViewModel.WorkFlowViewMoels;
 @{
+    var originalHtmlFieldPrefix = ViewData.TemplateInfo.HtmlFieldPrefix;
     ViewData.TemplateInfo.HtmlFieldPrefix = "FormDetail";
     var index = Guid.NewGuid();
     var indexName = "FormDetail.Index";
@@ -32,3 +33,6 @@
         </div>
     </div>
 </div>
+@{
+    ViewData.TemplateInfo.HtmlFieldPrefix = originalHtmlFieldPrefix;
+}
