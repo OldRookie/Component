@@ -66,6 +66,7 @@
                 <center>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary btn-ok">OK</button>
+                    <button type="button" class="btn btn-primary btn-save-ui">Save UI</button>
                 </center>
             </div>
         </div>
@@ -104,6 +105,35 @@
                         $.showInvalidError(response.ErrorMessages);
                     }
                 });
+            }
+        });
+
+        //debugger;
+        var table = $.fn.dataTable
+                        .tables({ visible: true, api: true });
+        $('.form-modal .btn-save-ui').click(function () {
+            form.validate();
+            if (form.valid()) {
+                var data = [];
+                var item = form.serializeObject()
+                data.push(item);
+                var table = $.fn.dataTable
+                    .tables({ visible: true, api: true });
+
+                var isEditable = false;
+                if (isEditable) {
+                    var tableData = table.data();
+                    table.clear();
+                    for (var i = 0; i < tableData.length; i++) {
+                        if (tableData[i].Id == item.Id) {
+                            tableData[i] = item;
+                        }
+                    }
+                    data = tableData;
+                }
+
+                table.rows.add(data).draw();
+                $('.form-modal').modal('hide');
             }
         });
     });

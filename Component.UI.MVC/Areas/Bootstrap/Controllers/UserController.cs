@@ -24,6 +24,12 @@ namespace Component.UI.MVC.Areas.Bootstrap.Controllers
             return PartialView("_CreateOrEdit");
         }
 
+        [HttpPost]
+        public ActionResult CreateOrEdit(UserVM userVM)
+        {
+            return PartialView("_CreateOrEdit", userVM);
+        }
+
         public ActionResult Save(UserVM UserVM)
         {
             var responseResult = new ResponseResultBase();
