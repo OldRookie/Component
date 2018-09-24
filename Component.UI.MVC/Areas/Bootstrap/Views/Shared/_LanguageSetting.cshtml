@@ -24,6 +24,13 @@
         }
     }
 
+
+    var controller = Url.RequestContext.RouteData.Values["controller"] as string;
+    var action = Url.RequestContext.RouteData.Values["action"] as string;
+    string areaName = Url.RequestContext.RouteData.Values["area"] == null ? "" : Url.RequestContext.RouteData.DataTokens["area"].ToString();
+    routeData.Add("controller", controller);
+    routeData.Add("action", action);
+    routeData.Add("area", areaName);
     var languages = new List<string>() { "en-US", "zh-CN" };
 }
 
@@ -34,13 +41,13 @@
     <ul class="dropdown-menu dropdown-lang" style="min-width:20px;">
         @foreach (var lang in languages)
         {
-            routeData.Remove("language");
-            routeData.Add("language", lang);
-            var controller = Url.RequestContext.RouteData.Values["controller"] as string;
-            var action = Url.RequestContext.RouteData.Values["action"] as string;
-            <li>
-                <a href="@Url.Action(action,controller, routeData )">@lang</a>
-            </li>
+            routeData.Remove("lang");
+            routeData.Add("lang", lang);
+        <li>
+            <a href="@Url.HttpRouteUrl("Bootstrap_Language",routeData)">@lang</a>
+
+            @*<a href="@Url.Action(action,controller,routeData)">@lang</a>*@
+        </li>
         }
         
     </ul>

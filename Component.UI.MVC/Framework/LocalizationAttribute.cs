@@ -13,39 +13,38 @@ namespace Component.UI.MVC.Framework
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            //lang:
-            //zh-CN
-            //en-US
+            var langRouteKey = "lang";
             string _language = "";
-            if (filterContext.RouteData.Values["Lang"] != null &&
-                     !string.IsNullOrWhiteSpace(filterContext.RouteData.Values["Lang"].ToString()))
+            if (filterContext.RouteData.Values[langRouteKey] != null &&
+                     !string.IsNullOrWhiteSpace(filterContext.RouteData.Values[langRouteKey].ToString()))
             {
-                _language = filterContext.RouteData.Values["Lang"].ToString().ToUpper();
+                _language = filterContext.RouteData.Values[langRouteKey].ToString().ToUpper();
             }
             else
             {
                 _language= CookieHelper.GetLanguageFromCookie(filterContext.HttpContext.Request.Cookies);
+                if (_language.IsEmpty())
+                {
+                    _language = filterContext.HttpContext.Request.UserLanguages[0];
+                } 
             }
 
-            ///从路由数据(url)里设置语言                
-            switch (filterContext.RouteData.Values["Lang"].ToString().ToUpper())
+            if (!_language.IsEmpty())
             {
-                case "ZH-CN":
-                case "ZH-TW":
-                case "EN-US":
-                    {
-                        _language = filterContext.RouteData.Values["Lang"].ToString();
-                        Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(_language);
-                        Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(_language);
-                        break;
-                    }
+                ///从路由数据(url)里设置语言                
+                switch (_language)
+                {
+                    case "ZH-CN":
+                    case "ZH-TW":
+                    case "EN-US":
+                        {
+                            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(_language);
+                            Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(_language);
+                            break;
+                        }
 
-            }
-
-            filterContext.RouteData.Values["Lang"] = _language;
-
-            /// 把设置保存进cookie
-            if (!_language.IsEmpty()) {
+                }
+                filterContext.RouteData.Values[langRouteKey] = _language;
 
                 HttpCookie _cookie = CookieHelper.UpdateLanguageToCookie(_language, filterContext.HttpContext.Request.Cookies);
                 _cookie.Expires = DateTime.Now.AddYears(1);

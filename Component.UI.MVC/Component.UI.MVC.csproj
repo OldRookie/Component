@@ -400,7 +400,18 @@
     <Content Include="Scripts\lib\iCheck\square\yellow.css" />
     <Content Include="Scripts\lib\iCheck\square\yellow.png" />
     <Content Include="Scripts\lib\iCheck\square\_all.css" />
+    <Content Include="Scripts\lib\Lightbox\css\lightbox.css" />
+    <Content Include="Scripts\lib\Lightbox\css\lightbox.min.css" />
+    <Content Include="Scripts\lib\Lightbox\images\close.png" />
+    <Content Include="Scripts\lib\Lightbox\images\loading.gif" />
+    <Content Include="Scripts\lib\Lightbox\images\next.png" />
+    <Content Include="Scripts\lib\Lightbox\images\prev.png" />
+    <Content Include="Scripts\lib\Lightbox\js\lightbox-plus-jquery.js" />
+    <Content Include="Scripts\lib\Lightbox\js\lightbox-plus-jquery.min.js" />
+    <Content Include="Scripts\lib\Lightbox\js\lightbox.js" />
+    <Content Include="Scripts\lib\Lightbox\js\lightbox.min.js" />
     <Content Include="Scripts\Webdiyer.js" />
+    <Content Include="UploadImages\20080405144414541.png" />
     <Content Include="Views\Shared\_LTELoginLayout.cshtml" />
     <Content Include="Areas\Bootstrap\Views\Forms\ImgItemList.cshtml" />
     <Content Include="Areas\Bootstrap\Views\Forms\_PageImgItems.cshtml" />
@@ -3702,6 +3713,8 @@
     <Content Include="Areas\Bootstrap\Views\Shared\EditorTemplates\RichText.cshtml" />
     <Content Include="Areas\Bootstrap\Views\Shared\EditorTemplates\File.cshtml" />
     <Content Include="Views\Auth\Login.cshtml" />
+    <Content Include="Scripts\lib\Lightbox\js\lightbox-plus-jquery.min.map" />
+    <Content Include="Scripts\lib\Lightbox\js\lightbox.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3710,8 +3723,6 @@
     <Folder Include="Areas\Bootstrap\Views\Task\" />
     <Folder Include="Content\lib\" />
     <Folder Include="Models\" />
-    <Folder Include="NewFolder1\" />
-    <Folder Include="UploadImages\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\List\" />
     <Folder Include="Views\Setting\" />

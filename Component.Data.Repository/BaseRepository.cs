@@ -7,7 +7,7 @@ using System.Data.Entity;
 using System.Linq.Expressions;
 using Component.ViewModel;
 using System.Text.RegularExpressions;
-using Component.Model.IRepository;
+using Component.Model;
 
 namespace Component.Data.Repository
 {

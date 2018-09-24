@@ -75,7 +75,7 @@ namespace Component.UI.MVC.Areas.Bootstrap.Controllers
                     FileFullPath = "",
                     FileName = "FileName" + i.ToString(),
                     SerialNumber = "SerialNumber" + i.ToString(),
-                    Url = ""
+                    Url = ("/UploadImages/20080405144414541.png")
                 });
             }
             var pageSourceData = items

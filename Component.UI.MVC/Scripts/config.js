@@ -25,6 +25,7 @@
         "bootbox": "bootbox",
         "toastr": "toastr",
         "iCheck": "lib/iCheck/icheck",
+        "Lightbox": "lib/Lightbox/js/lightbox",
     },
     waitSeconds: 15,
     map: {
@@ -52,6 +53,7 @@
         "iCheck": ["jquery"],
         "unobtrusive-ajax": ["jquery"],
         "Webdiyer": ["jquery"],
+        "Lightbox": ["jquery", "css!lib/Lightbox/css/Lightbox.css"],
         //...
     }
 };
