@@ -47,6 +47,7 @@
     <Compile Include="DataTables\DataTablesParameters.cs" />
     <Compile Include="DataTables\DataTablesResult.cs" />
     <Compile Include="DTO\WorkflowInfoDTO.cs" />
+    <Compile Include="Entity\DataItemLocaleResource.cs" />
     <Compile Include="Entity\LocaleResourceEntity.cs" />
     <Compile Include="DataExension\IBaseDataSource.cs" />
     <Compile Include="DataExension\LocaleResourceDataSource.cs" />

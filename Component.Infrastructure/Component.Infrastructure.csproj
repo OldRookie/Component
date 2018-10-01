@@ -74,6 +74,7 @@
     <Compile Include="Utility\JsonHelper.cs" />
     <Compile Include="Validation\ValidationExt.cs" />
     <Compile Include="Validation\ValidationResultInfo.cs" />
+    <Compile Include="Web\WebHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="IOC\" />
