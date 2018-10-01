@@ -7,8 +7,8 @@
     <ProjectGuid>{31C4D268-0DA4-41D6-A453-715B1B39EC23}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Component.Application.Query</RootNamespace>
-    <AssemblyName>Component.Application.Query</AssemblyName>
+    <RootNamespace>Component.Application.Read</RootNamespace>
+    <AssemblyName>Component.Application.Read</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,6 +30,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NPOI">
+      <HintPath>..\Component.UI.MVC\Bin\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Component.UI.MVC\Bin\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,7 +49,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="ImgInfoReadApp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Component.Infrastructure\Component.Infrastructure.csproj">
+      <Project>{AFC667FD-B389-4D91-B216-BB536650553E}</Project>
+      <Name>Component.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Component.ViewModel\Component.Model.csproj">
+      <Project>{AD12C6F3-4745-4AE1-ACBF-D64C6CAC7586}</Project>
+      <Name>Component.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

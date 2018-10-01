@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Component.Model.IRepository
+namespace Component.Model
 {
     public interface IBaseDataSource<TEntity> where TEntity : class
     {

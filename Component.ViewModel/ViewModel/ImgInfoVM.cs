@@ -17,6 +17,7 @@ namespace Component.Model.ViewModel
         public string FileName { get; set; }
 
         [MaxLength(1024)]
+        [Display(Name = "图片路径")]
         public string FileFullPath { get; set; }
 
         [MaxLength(256)]

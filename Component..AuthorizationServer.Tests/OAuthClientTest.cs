@@ -63,7 +63,7 @@ namespace Component.AuthorizationServer.Tests
             if (response.StatusCode != HttpStatusCode.OK)
             {
                 Console.WriteLine(response.StatusCode);
-                Console.WriteLine((await response.Content.ReadAsAsync<HttpError>()).Message);
+                //Console.WriteLine((await response.Content.ReadAsAsync<HttpError>()).Message);
                 return null;
             }
             var tokenResponse = await response.Content.ReadAsAsync<TokenResponse>();
@@ -80,7 +80,7 @@ namespace Component.AuthorizationServer.Tests
             if (response.StatusCode != HttpStatusCode.OK)
             {
                 Console.WriteLine(response.StatusCode);
-                Console.WriteLine((await response.Content.ReadAsAsync<HttpError>()).Message);
+                //Console.WriteLine((await response.Content.ReadAsAsync<HttpError>()).Message);
                 return null;
             }
             return authorizationCode;
@@ -97,7 +97,7 @@ namespace Component.AuthorizationServer.Tests
             if (response.StatusCode != HttpStatusCode.OK)
             {
                 Console.WriteLine(response.StatusCode);
-                Console.WriteLine((await response.Content.ReadAsAsync<HttpError>()).Message);
+                //Console.WriteLine((await response.Content.ReadAsAsync<HttpError>()).Message);
             }
             Console.WriteLine(await response.Content.ReadAsStringAsync());
             Xunit.Assert.Equal(HttpStatusCode.OK, response.StatusCode);
@@ -124,7 +124,7 @@ namespace Component.AuthorizationServer.Tests
             if (response.StatusCode != HttpStatusCode.OK)
             {
                 Console.WriteLine(response.StatusCode);
-                Console.WriteLine((await response.Content.ReadAsAsync<HttpError>()).Message);
+                //Console.WriteLine((await response.Content.ReadAsAsync<HttpError>()).Message);
             }
             Console.WriteLine(await response.Content.ReadAsStringAsync());
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
@@ -140,7 +140,7 @@ namespace Component.AuthorizationServer.Tests
             if (response.StatusCode != HttpStatusCode.OK)
             {
                 Console.WriteLine(response.StatusCode);
-                Console.WriteLine((await response.Content.ReadAsAsync<HttpError>()).Message);
+                //Console.WriteLine((await response.Content.ReadAsAsync<HttpError>()).Message);
             }
             Console.WriteLine(await response.Content.ReadAsStringAsync());
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
@@ -163,7 +163,7 @@ namespace Component.AuthorizationServer.Tests
             if (response.StatusCode != HttpStatusCode.OK)
             {
                 Console.WriteLine(response.StatusCode);
-                Console.WriteLine((await response.Content.ReadAsAsync<HttpError>()).Message);
+                //Console.WriteLine((await response.Content.ReadAsAsync<HttpError>()).Message);
             }
             Console.WriteLine(await response.Content.ReadAsStringAsync());
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);

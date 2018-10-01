@@ -16,9 +16,15 @@ namespace Component.UI.MVC.Areas.Bootstrap
         {
             context.MapRoute(
                 "Bootstrap_default",
-                "Bootstrap/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                "Bootstrap/{controller}/{action}",
+               defaults: new { controller = "forms", action = "Index" }
             );
+
+            context.MapRoute(
+              "Bootstrap_Language",
+              "Bootstrap/{lang}/{controller}/{action}",
+              defaults: new { controller = "forms", action = "Index"}
+          );
         }
     }
 }

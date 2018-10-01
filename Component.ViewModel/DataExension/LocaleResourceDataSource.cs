@@ -1,6 +1,6 @@
 ﻿using Component.Infrastructure.DependencyManagement;
+using Component.Model;
 using Component.Model.Entity;
-using Component.Model.IRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;

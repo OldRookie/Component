@@ -1,4 +1,5 @@
-﻿using Component.ViewModel;
+﻿using Component.Infrastructure;
+using Component.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,5 +51,27 @@ namespace Component.UI.MVC.Areas.Bootstrap.Controllers
             }
             return Json(result,JsonRequestBehavior.AllowGet);
         }
+
+      
+
+        /// <summary>
+        /// 下载
+        /// </summary>
+        /// <returns></returns>
+        public FileResult Download(Guid Id) {
+            AttachmentDTO attachmentDTO = null;// _attachmentAppService.DownloadAttachment(Id);
+            string filePath = Server.MapPath(attachmentDTO.Path);
+            return File(filePath, "text/plain", attachmentDTO.Name);
+        }
+
+      
+        public AttachmentDTO DownloadAttachment(Guid Id) {
+            var attachment = new object();
+            //Attachment attachment = _attachmentRepository.Find(a => a.Id == Id).FirstOrDefault();
+            AttachmentDTO attachmentDTO = attachment.JsonAutoMapTo<AttachmentDTO>();
+            return attachmentDTO;
+        }
     }
+
+    
 }
