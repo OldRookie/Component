@@ -3759,7 +3759,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Component.Application.Query\Component.Application.Read.csproj">
-      <Project>{31C4D268-0DA4-41D6-A453-715B1B39EC23}</Project>
+      <Project>{31c4d268-0da4-41d6-a453-715b1b39ec23}</Project>
       <Name>Component.Application.Read</Name>
     </ProjectReference>
     <ProjectReference Include="..\Component.Application\Component.Application.csproj">

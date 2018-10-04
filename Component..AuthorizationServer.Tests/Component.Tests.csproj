@@ -9,8 +9,8 @@
     <ProjectGuid>{0B2C010D-6FA4-4ED1-B277-DF351B2566CB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Component.AuthorizationServer.Tests</RootNamespace>
-    <AssemblyName>Component.AuthorizationServer.Tests</AssemblyName>
+    <RootNamespace>Component.Tests</RootNamespace>
+    <AssemblyName>Component.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -97,7 +97,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OAuthClientTest.cs" />
+    <Compile Include="AuthorizationServerTests\OAuthClientTest.cs" />
+    <Compile Include="Infrastructure.Test\ExpressionExtensionsTest.cs" />
+    <Compile Include="Infrastructure.Test\MetadataValidationTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -106,6 +108,12 @@
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\xunit.analyzers.0.10.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Component.Infrastructure\Component.Infrastructure.csproj">
+      <Project>{AFC667FD-B389-4D91-B216-BB536650553E}</Project>
+      <Name>Component.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

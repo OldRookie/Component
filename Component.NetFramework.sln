@@ -39,7 +39,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Component.Infrastructure.To
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "08.Server", "08.Server", "{76BEE5ED-A592-4355-A0CA-2403F157793C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Component.AuthorizationServer.Tests", "Component..AuthorizationServer.Tests\Component.AuthorizationServer.Tests.csproj", "{0B2C010D-6FA4-4ED1-B277-DF351B2566CB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Component.Tests", "Component..AuthorizationServer.Tests\Component.Tests.csproj", "{0B2C010D-6FA4-4ED1-B277-DF351B2566CB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "99.Tests", "99.Tests", "{CB97DFED-4B60-4BF7-81E1-E2F32150B40E}"
 EndProject

@@ -5,7 +5,7 @@
 @{
     /**/
     ViewBag.Title = "Datatables";
-    var propertyDict = typeof(WorkFlowDTO).GetEntityPropertyDict();
+    var propertyDict = typeof(WorkflowBaseInfoVM).GetEntityPropertyDict();
     var dictText = propertyDict.ToJson();
 }
 @model DataTablesQueryRequest

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Component.ViewModel
 {
-    public class AttachmentDTO
+    public class AttachmentVM
     {
         public Guid Id { get; set; }
 

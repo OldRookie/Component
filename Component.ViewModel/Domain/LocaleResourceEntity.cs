@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Component.Model.Entity
+namespace Component.Model.Domain
 {
     /// <summary>
     /// 本地环境资源

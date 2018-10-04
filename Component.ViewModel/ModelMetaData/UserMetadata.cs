@@ -5,21 +5,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Component.Model.Entity
+namespace Component.Model.ModelMetaData
 {
-    public class BaseForm
+    public class UserMetadata
     {
         public string Id { get; set; }
 
         [Display(Name = "名字")]
         public string Name { get; set; }
 
-        [Display(Name = "日期")]
-        public DateTime? FormDateTime { get; set; }
+        [Display(Name = "邮箱")]
+        [Required]
+        [EmailAddress]
+        public string EMail { get; set; }
 
-        [Display(Name = "金额")]
-        public int? Money { get; set; }
-
-        public List<FormDetail> FormDetail { get; set; }
+        [Display(Name = "全名")]
+        [Required]
+        public string FullName { get; set; }
     }
 }

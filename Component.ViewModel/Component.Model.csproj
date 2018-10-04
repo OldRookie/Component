@@ -42,34 +42,48 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AttachmentDTO.cs" />
-    <Compile Include="BaseViewModel.cs" />
+    <Compile Include="ModelMetaData\UserMetadata.cs" />
+    <Compile Include="ViewModel\AttachmentDTO.cs" />
+    <Compile Include="ViewModel\Course.cs" />
+    <Compile Include="ViewModel\StudentVM.cs" />
+    <Compile Include="ViewModel\Teacher.cs" />
+    <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="DataTables\DataTablesParameters.cs" />
     <Compile Include="DataTables\DataTablesResult.cs" />
-    <Compile Include="DTO\WorkflowInfoDTO.cs" />
-    <Compile Include="Entity\DataItemLocaleResource.cs" />
-    <Compile Include="Entity\LocaleResourceEntity.cs" />
+    <Compile Include="Domain\BaseForm.cs" />
+    <Compile Include="Domain\FormDetail.cs" />
+    <Compile Include="Domain\Permission.cs" />
+    <Compile Include="DTO\External\UserExternalDTO.cs" />
+    <Compile Include="ViewModel\WorkflowBaseInfoVM.cs" />
+    <Compile Include="Domain\BaseData.cs" />
+    <Compile Include="Domain\BaseDataType.cs" />
+    <Compile Include="Domain\DataItemLocaleResource.cs" />
+    <Compile Include="Domain\LocaleResourceEntity.cs" />
     <Compile Include="DataExension\IBaseDataSource.cs" />
     <Compile Include="DataExension\LocaleResourceDataSource.cs" />
+    <Compile Include="ViewModel\ImgInfoExportVM.cs" />
     <Compile Include="ViewModel\ImgInfoVM.cs" />
     <Compile Include="ViewModel\ImgItemQueryRequest.cs" />
     <Compile Include="ViewModel\ImportVM.cs" />
     <Compile Include="ViewModel\UserQueryRequest.cs" />
-    <Compile Include="ViewModel\User.cs" />
+    <Compile Include="ViewModel\UserVM.cs" />
     <Compile Include="FileInputResult.cs" />
     <Compile Include="FileUpload.cs" />
     <Compile Include="Pagination.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\QueryRequest.cs" />
-    <Compile Include="WorkFlowViewMoels\AdvanceForm.cs" />
-    <Compile Include="WorkFlowViewMoels\BaseFormVM.cs" />
-    <Compile Include="WorkFlowViewMoels\FormDetail.cs" />
+    <Compile Include="ViewModel\WorkFlowViewMoels\AdvanceForm.cs" />
+    <Compile Include="ViewModel\WorkFlowViewMoels\BaseFormVM.cs" />
+    <Compile Include="ViewModel\WorkFlowViewMoels\FormDetailVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Component.Infrastructure\Component.Infrastructure.csproj">
       <Project>{AFC667FD-B389-4D91-B216-BB536650553E}</Project>
       <Name>Component.Infrastructure</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Entity\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

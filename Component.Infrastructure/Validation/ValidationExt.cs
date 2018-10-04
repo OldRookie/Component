@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
@@ -10,7 +11,7 @@ namespace Component.Infrastructure.Validation
     public static class ValidationExtension​
     {
 
-        public static ValidationResultInfo Validate(this object obj)
+        public static ValidationResultInfo ValidateByValidationAttr(this object obj)
         {
             var validationResultInfo = new ValidationResultInfo();
 
@@ -35,6 +36,36 @@ namespace Component.Infrastructure.Validation
                     {
                         validationResults.Add(prop.Name, results);
                     }
+                }
+            }
+            validationResultInfo.ValidationResults = validationResults;
+            return validationResultInfo;
+        }
+
+        public static ValidationResultInfo Validate(this object obj)
+        {
+            var validationResultInfo = new ValidationResultInfo();
+
+            var context = new ValidationContext(obj, null, null);
+
+            PropertyDescriptorCollection props =
+                TypeDescriptor.GetProperties(obj.GetType());
+
+            var validationResults = new Dictionary<string, List<ValidationResult>>();
+            foreach (var prop in obj.GetType().GetProperties())
+            {
+                var results = new List<ValidationResult>();
+                var displayAttribute = prop.GetCustomAttribute<DisplayAttribute>();
+                context.MemberName = prop.Name;
+                if (displayAttribute != null)
+                {
+                    context.DisplayName = displayAttribute.Name;
+                    context.MemberName = displayAttribute.Name;
+                }
+                
+                if (!Validator.TryValidateProperty(prop.GetValue(obj), context, results))
+                {
+                    validationResults.Add(prop.Name, results);
                 }
             }
             validationResultInfo.ValidationResults = validationResults;

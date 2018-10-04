@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 
@@ -127,7 +130,7 @@ namespace Component.Infrastructure.Web
         /// <param name="value">Session的键值</param>
         public static void WriteSession<T>(string key, T value)
         {
-            if (key.IsEmpty())
+            if (!string.IsNullOrEmpty(key))
                 return;
             HttpContext.Current.Session[key] = value;
         }
@@ -148,7 +151,7 @@ namespace Component.Infrastructure.Web
         /// <param name="key">Session的键名</param>        
         public static string GetSession(string key)
         {
-            if (key.IsEmpty())
+            if (!string.IsNullOrEmpty(key))
                 return string.Empty;
             return HttpContext.Current.Session[key] as string;
         }
@@ -158,7 +161,7 @@ namespace Component.Infrastructure.Web
         /// <param name="key">Session的键名</param>
         public static void RemoveSession(string key)
         {
-            if (key.IsEmpty())
+            if (!string.IsNullOrEmpty(key))
                 return;
             HttpContext.Current.Session.Contents.Remove(key);
         }

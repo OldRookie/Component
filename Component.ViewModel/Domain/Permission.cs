@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Component.Model.Entity
 {
+    [Table("Sys_Permission")]
     [Description("权限")]
     public class Permission
     {
@@ -34,6 +35,7 @@ namespace Component.Model.Entity
 
 
     [Description("权限项")]
+    [Table("Sys_PermissionItem")]
     public class PermissionItem
     {
         [Key]

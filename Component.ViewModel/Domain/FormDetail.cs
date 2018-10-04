@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Component.Model.Entity
+namespace Component.Model.Domain
 {
+    [Table("WF_FormDetail")]
     public class FormDetail
     {
         public string Id { get; set; }

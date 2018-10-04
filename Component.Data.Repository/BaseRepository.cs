@@ -8,6 +8,7 @@ using System.Linq.Expressions;
 using Component.ViewModel;
 using System.Text.RegularExpressions;
 using Component.Model;
+using System.Linq.Dynamic;
 
 namespace Component.Data.Repository
 {
@@ -69,6 +70,13 @@ namespace Component.Data.Repository
                 : DbSet.Where(predicate);
         }
 
+
+        public virtual IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate, string predicateText, object[] parameters, bool @readonly = false)
+        {
+            return @readonly
+                ? DbSet.Where(predicate).Where(predicateText, parameters).AsNoTracking()
+                : DbSet.Where(predicate).Where(predicateText, parameters);
+        }
 
         public TEntity FirstOrDefault(Expression<Func<TEntity, bool>> predicate)
         {

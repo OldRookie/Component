@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Component.ViewModel.DTO
 {
-    public class WorkFlowDTO
+    public class WorkflowBaseInfoVM
     {
         public string Id { get; set; }
 

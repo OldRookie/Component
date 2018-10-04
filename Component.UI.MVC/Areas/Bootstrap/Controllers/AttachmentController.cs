@@ -13,7 +13,7 @@ namespace Component.UI.MVC.Areas.Bootstrap.Controllers
         // GET: Bootstrap/Attachment
         public ActionResult Upload()
         {
-            var attchments = new List<AttachmentDTO>();
+            var attchments = new List<AttachmentVM>();
             var result = new FileInputResult()
             {
                 append = true,
@@ -27,7 +27,7 @@ namespace Component.UI.MVC.Areas.Bootstrap.Controllers
                 if (file != null && file.ContentLength > 0)
                 {
                     var path = Server.MapPath("~/UploadImages/" + file.FileName);
-                    attchments.Add(new AttachmentDTO
+                    attchments.Add(new AttachmentVM
                     {
                         Name = file.FileName,
                         Size = file.ContentLength,
@@ -59,16 +59,16 @@ namespace Component.UI.MVC.Areas.Bootstrap.Controllers
         /// </summary>
         /// <returns></returns>
         public FileResult Download(Guid Id) {
-            AttachmentDTO attachmentDTO = null;// _attachmentAppService.DownloadAttachment(Id);
+            AttachmentVM attachmentDTO = null;// _attachmentAppService.DownloadAttachment(Id);
             string filePath = Server.MapPath(attachmentDTO.Path);
             return File(filePath, "text/plain", attachmentDTO.Name);
         }
 
       
-        public AttachmentDTO DownloadAttachment(Guid Id) {
+        public AttachmentVM DownloadAttachment(Guid Id) {
             var attachment = new object();
             //Attachment attachment = _attachmentRepository.Find(a => a.Id == Id).FirstOrDefault();
-            AttachmentDTO attachmentDTO = attachment.JsonAutoMapTo<AttachmentDTO>();
+            AttachmentVM attachmentDTO = attachment.JsonAutoMapTo<AttachmentVM>();
             return attachmentDTO;
         }
     }

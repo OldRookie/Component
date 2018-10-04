@@ -1,4 +1,4 @@
-﻿using Component.Model.Entity;
+﻿using Component.Model.Domain;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;

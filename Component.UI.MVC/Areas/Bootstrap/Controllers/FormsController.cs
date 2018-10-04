@@ -46,8 +46,8 @@ namespace Component.UI.MVC.Areas.Bootstrap.Controllers
 
         public ActionResult Query(DataTablesQueryRequest queryRequest)
         {
-            var workFlowDTOs = new List<WorkFlowDTO>();
-            workFlowDTOs.Add(new WorkFlowDTO()
+            var workFlowDTOs = new List<WorkflowBaseInfoVM>();
+            workFlowDTOs.Add(new WorkflowBaseInfoVM()
             {
                 Id = "1",
                 CreateTime = DateTime.Now,
@@ -56,7 +56,7 @@ namespace Component.UI.MVC.Areas.Bootstrap.Controllers
                 UserName = "User"
 
             });
-            var dataResult= new DataTablesResult<WorkFlowDTO>(queryRequest.Draw, workFlowDTOs.Count, workFlowDTOs.Count, workFlowDTOs);
+            var dataResult= new DataTablesResult<WorkflowBaseInfoVM>(queryRequest.Draw, workFlowDTOs.Count, workFlowDTOs.Count, workFlowDTOs);
             return Json(dataResult, JsonRequestBehavior.AllowGet);
         }
 

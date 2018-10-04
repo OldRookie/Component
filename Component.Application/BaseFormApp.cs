@@ -2,6 +2,7 @@
 using Component.Data.Repository;
 using Component.Infrastructure;
 using Component.Infrastructure.Utility;
+using Component.Model.Domain;
 using Component.Model.Entity;
 using System;
 using System.Collections.Generic;
