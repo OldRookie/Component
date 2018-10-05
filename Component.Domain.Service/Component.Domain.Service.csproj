@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,8 +41,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseService.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Component.Data.Repository\Component.Data.Repository.csproj">
+      <Project>{bb68004f-81ed-4a50-8aef-86d385eeabb5}</Project>
+      <Name>Component.Data.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Component.Infrastructure\Component.Infrastructure.csproj">
+      <Project>{AFC667FD-B389-4D91-B216-BB536650553E}</Project>
+      <Name>Component.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

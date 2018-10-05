@@ -97,12 +97,12 @@
         });
 
         $(document).ready(function () {
+            toastr.options.positionClass = 'toast-center';
             define('model.opt', ["jquery"], function ($) {
                 return {
                     success: function () {
                         var container = $('.modal-container');
                         container.find('.modal.fade').modal('hide');
-                        toastr.options.positionClass = 'toast-center';
                         bootbox.alert({ closeButton: false, message: data });
                         toastr.success('提交数据成功');
                         $(".btn-search").click();

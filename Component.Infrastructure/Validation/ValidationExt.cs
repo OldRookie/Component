@@ -72,7 +72,7 @@ namespace Component.Infrastructure.Validation
             return validationResultInfo;
         }
 
-        public static ValidationBaseInfo ValidateBaseInfo(this object obj)
+        public static ValidationBaseInfo ValidateBaseInfoByValidationAttr(this object obj)
         {
             var validationResultInfo = new ValidationBaseInfo();
 
@@ -98,6 +98,36 @@ namespace Component.Infrastructure.Validation
                     }
                 }
             }
+            return validationResultInfo;
+        }
+
+        public static ValidationBaseInfo ValidateBaseInfo(this object obj)
+        {
+            var validationResultInfo = new ValidationBaseInfo();
+
+            var context = new ValidationContext(obj, null, null);
+
+            PropertyDescriptorCollection props =
+                TypeDescriptor.GetProperties(obj.GetType());
+
+            var validationResults = new Dictionary<string, List<ValidationResult>>();
+            foreach (var prop in obj.GetType().GetProperties())
+            {
+                var results = new List<ValidationResult>();
+                var displayAttribute = prop.GetCustomAttribute<DisplayAttribute>();
+                context.MemberName = prop.Name;
+                if (displayAttribute != null)
+                {
+                    context.DisplayName = displayAttribute.Name;
+                    context.MemberName = displayAttribute.Name;
+                }
+
+                if (!Validator.TryValidateProperty(prop.GetValue(obj), context, results))
+                {
+                    validationResultInfo.ErrorMessages.AddRange(results.Select(x => x.ErrorMessage));
+                }
+            }
+
             return validationResultInfo;
         }
 

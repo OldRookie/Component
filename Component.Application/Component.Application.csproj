@@ -54,8 +54,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AttachmentApp.cs" />
+    <Compile Include="BaseAppService.cs" />
     <Compile Include="BaseFormApp.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="CURDBaseApp.cs" />
     <Compile Include="Job\SimpleJob.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -66,6 +68,14 @@
     <ProjectReference Include="..\Component.Data.Repository\Component.Data.Repository.csproj">
       <Project>{BB68004F-81ED-4A50-8AEF-86D385EEABB5}</Project>
       <Name>Component.Data.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Component.Data\Component.Data.csproj">
+      <Project>{9A5F9093-9B72-46B0-B4D2-102E4CFB15C9}</Project>
+      <Name>Component.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Component.Domain.Service\Component.Domain.Service.csproj">
+      <Project>{F778C77E-BFE8-4545-8CFC-15133135C0DC}</Project>
+      <Name>Component.Domain.Service</Name>
     </ProjectReference>
     <ProjectReference Include="..\Component.Infrastructure\Component.Infrastructure.csproj">
       <Project>{afc667fd-b389-4d91-b216-bb536650553e}</Project>

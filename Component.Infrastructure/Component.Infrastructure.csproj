@@ -79,6 +79,7 @@
     <Compile Include="Utility\CompressHelper.cs" />
     <Compile Include="Utility\DataTableExtension.cs" />
     <Compile Include="Utility\JsonHelper.cs" />
+    <Compile Include="Validation\ISelfValidation.cs" />
     <Compile Include="Validation\ValidationExt.cs" />
     <Compile Include="Validation\ValidationResultInfo.cs" />
     <Compile Include="Web\WebHelper.cs" />

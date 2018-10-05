@@ -59,12 +59,17 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryableExtension.cs" />
+    <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Component.Infrastructure\Component.Infrastructure.csproj">
+      <Project>{AFC667FD-B389-4D91-B216-BB536650553E}</Project>
+      <Name>Component.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Component.ViewModel\Component.Model.csproj">
       <Project>{AD12C6F3-4745-4AE1-ACBF-D64C6CAC7586}</Project>
       <Name>Component.Model</Name>

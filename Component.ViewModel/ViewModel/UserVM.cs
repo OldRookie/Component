@@ -13,15 +13,15 @@ namespace Component.Model.ViewModel
     {
         public string Id { get; set; }
 
-        //[Display(Name = "名字")]
+        [Display(Name = "名字")]
         public string Name { get; set; }
 
-        //[Display(Name = "邮箱")]
+        [Display(Name = "邮箱")]
         //[Required]
-        //[EmailAddress]
+        [EmailAddress]
         public string EMail { get; set; }
 
-        //[Display(Name="全名")]
+        [Display(Name = "全名")]
         //[Required]
         public string FullName { get; set; }
     }
