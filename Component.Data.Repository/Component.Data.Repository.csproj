@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=4.8.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.8.1\lib\net45\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="Dynamic, Version=1.0.0.0, Culture=neutral, PublicKeyToken=68293a411f0cabcc, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamicQuery.1.0\lib\35\Dynamic.dll</HintPath>
     </Reference>
@@ -54,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseRepository.cs" />
+    <Compile Include="DependencyRegistrar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -64,6 +68,10 @@
     <ProjectReference Include="..\Component.Data\Component.Data.csproj">
       <Project>{9a5f9093-9b72-46b0-b4d2-102e4cfb15c9}</Project>
       <Name>Component.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Component.Infrastructure\Component.Infrastructure.csproj">
+      <Project>{AFC667FD-B389-4D91-B216-BB536650553E}</Project>
+      <Name>Component.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\Component.ViewModel\Component.Model.csproj">
       <Project>{ad12c6f3-4745-4ae1-acbf-d64c6cac7586}</Project>

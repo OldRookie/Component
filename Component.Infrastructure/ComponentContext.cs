@@ -52,7 +52,8 @@ namespace Component.Infrastructure
             var builder = new ContainerBuilder();
 
             //type finder
-            var typeFinder = new AppDomainTypeFinder();
+            var typeFinder = new WebAppTypeFinder();
+            //var typeFinder = new AppDomainTypeFinder();
             builder.Register(c => typeFinder);
 
             //find IDependencyRegistar implementations

@@ -29,5 +29,9 @@ namespace Component.Data
         public DbSet<LocaleResource> LocaleResource { get; set; }
         public DbSet<BaseForm> BaseForm { get; set; }
         public DbSet<FormDetail> FormDetail { get; set; }
+
+        public DbSet<BaseData> BaseData { get; set; }
+
+        public DbSet<BaseDataType> BaseDataType { get; set; }
     }
 }
