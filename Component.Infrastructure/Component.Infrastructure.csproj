@@ -33,6 +33,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -57,8 +58,11 @@
     <Compile Include="Excel\ExcelHelper.cs" />
     <Compile Include="FileUpload\PathFileUpload.cs" />
     <Compile Include="FileUpload\UploadFileInfo.cs" />
+    <Compile Include="File\FileDESEncryptHelper.cs" />
     <Compile Include="File\FileHelper.cs" />
     <Compile Include="File\FolderHelper.cs" />
+    <Compile Include="File\PathHelper.cs" />
+    <Compile Include="File\ThumbnailHelper.cs" />
     <Compile Include="Identity\IdentityInfoHelper.cs" />
     <Compile Include="Json\JsonExtension.cs" />
     <Compile Include="Log\LogExtension.cs" />
