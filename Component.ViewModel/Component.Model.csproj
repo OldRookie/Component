@@ -42,6 +42,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\BaseWorkFlowFormViewModel.cs" />
+    <Compile Include="Domain\Role.cs" />
+    <Compile Include="Domain\RolePermission.cs" />
+    <Compile Include="Domain\UserPermission.cs" />
+    <Compile Include="Domain\UserRole.cs" />
+    <Compile Include="Entity\BaseEntity.cs" />
+    <Compile Include="Entity\User.cs" />
+    <Compile Include="Entity\Workflow.cs" />
+    <Compile Include="Entity\WorkFlowStatusCode.cs" />
     <Compile Include="ModelMetaData\UserMetadata.cs" />
     <Compile Include="ViewModel\AttachmentDTO.cs" />
     <Compile Include="ViewModel\Course.cs" />
@@ -82,8 +91,6 @@
       <Name>Component.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Entity\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

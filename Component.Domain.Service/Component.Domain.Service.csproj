@@ -30,6 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=7.0.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -44,6 +45,8 @@
     <Compile Include="BaseService.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Workflow\BaseWFService.cs" />
+    <Compile Include="Workflow\WFServiceFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Component.Data.Repository\Component.Data.Repository.csproj">
@@ -53,6 +56,10 @@
     <ProjectReference Include="..\Component.Infrastructure\Component.Infrastructure.csproj">
       <Project>{AFC667FD-B389-4D91-B216-BB536650553E}</Project>
       <Name>Component.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Component.ViewModel\Component.Model.csproj">
+      <Project>{AD12C6F3-4745-4AE1-ACBF-D64C6CAC7586}</Project>
+      <Name>Component.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

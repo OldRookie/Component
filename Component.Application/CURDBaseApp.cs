@@ -1,6 +1,7 @@
 ﻿using Component.Data.Repository;
 using Component.Domain.Service;
 using Component.Infrastructure;
+using Component.Model.DataTables;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace Component.Application
 {
-    public class CURDBaseApp<T> : BaseAppService where T : class
+    public class CURDBaseApp<TEntity> : BaseAppService where TEntity : class
     {
-        BaseService<T> _service = new BaseService<T>();
-        BaseRepository<T> _repository = new BaseRepository<T>();
-        public virtual ResponseResultBase Create(T t)
+        BaseService<TEntity> _service = new BaseService<TEntity>();
+        BaseRepository<TEntity> _repository = new BaseRepository<TEntity>();
+        public virtual ResponseResultBase Create(TEntity t)
         {
             var result = new ResponseResultBase();
             result.Code = ResultCode.Success;
@@ -29,7 +30,7 @@ namespace Component.Application
             return result;
         }
 
-        public virtual ResponseResultBase Update(T t)
+        public virtual ResponseResultBase Update(TEntity t)
         {
             var result = new ResponseResultBase();
             result.Code = ResultCode.Success;
@@ -44,7 +45,7 @@ namespace Component.Application
             return result;
         }
 
-        public virtual ResponseResultBase Remove(T t)
+        public virtual ResponseResultBase Remove(TEntity t)
         {
             var result = new ResponseResultBase();
             result.Code = ResultCode.Success;
@@ -60,16 +61,88 @@ namespace Component.Application
         }
 
 
-        public virtual T Get(int id, bool @readonly = false)
+        public virtual TEntity Get(int id, bool @readonly = false)
         {
             return this._repository.Get(id);
         }
 
 
-        public virtual IEnumerable<T> Find(Expression<Func<T, bool>> predicate, bool @readonly = false)
+        public virtual IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate, bool @readonly = false)
         {
             return _repository.Find(predicate, @readonly);
         }
+
+        #region Read Methods
+
+        public virtual TEntity Get(Guid id)
+        {
+            return _repository.Get(id);
+        }
+        
+        public virtual IEnumerable<TEntity> All()
+        {
+            return _repository.All();
+        }
+
+        public virtual IEnumerable<TViewModel> All<TViewModel>()
+        {
+            return _repository.All().JsonAutoMapTo<List<TViewModel>>();
+        }
+
+        public virtual IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
+        {
+            return _repository.Find(predicate);
+        }
+
+        public virtual IEnumerable<TViewModel> Find<TViewModel>(Expression<Func<TEntity, bool>> predicate)
+        {
+            return _repository.Find(predicate).JsonAutoMapTo<List<TViewModel>>();
+        }
+
+        public DataTablesResult<TViewModel> AllDataTableResult<TViewModel>()
+        {
+            var data = this.All<TViewModel>().ToList();
+
+            var dataTablesResult = new DataTablesResult<TViewModel>(0, data.Count(), data.Count(), data);
+            return dataTablesResult;
+        }
+
+        public DataTablesResult<TViewModel> FindEntireEntityDataTableResult<TViewModel>(Expression<Func<TEntity, bool>> predicate, Func<TEntity, TViewModel> selector)
+        {
+            var data = this._repository.FindEntireEntity(predicate).Select(selector).ToList()
+                .JsonAutoMapTo<List<TViewModel>>();
+
+            var dataTablesResult = new DataTablesResult<TViewModel>(0, data.Count(), data.Count(), data);
+            return dataTablesResult;
+        }
+
+        public DataTablesResult<TViewModel> FindDataTableResult<TViewModel>(Expression<Func<TEntity, bool>> predicate, Func<TEntity, TViewModel> selector = null)
+        {
+            var data = this._repository.Find(predicate).Select(selector).ToList()
+                .JsonAutoMapTo<List<TViewModel>>();
+
+            var dataTablesResult = new DataTablesResult<TViewModel>(0, data.Count(), data.Count(), data);
+            return dataTablesResult;
+        }
+
+        public DataTablesResult<TViewModel> FindDataTableResult<TViewModel>(Expression<Func<TEntity, bool>> predicate)
+        {
+            var data = this._repository.Find(predicate).ToList()
+                .JsonAutoMapTo<List<TViewModel>>();
+
+            var dataTablesResult = new DataTablesResult<TViewModel>(0, data.Count(), data.Count(), data);
+            return dataTablesResult;
+        }
+
+        public DataTablesResult<TViewModel> AllDataTableResult<TViewModel>(Expression<Func<TEntity, TViewModel>> selector)
+        {
+            var data = this.All<TViewModel>().ToList();
+
+            var dataTablesResult = new DataTablesResult<TViewModel>(0, data.Count(), data.Count(), data);
+            return dataTablesResult;
+        }
+
+        #endregion
 
         public virtual void Dispose()
         {

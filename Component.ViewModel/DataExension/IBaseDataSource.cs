@@ -10,7 +10,7 @@ namespace Component.Model
 {
     public interface IBaseDataSource<TEntity> where TEntity : class
     {
-        TEntity Get(int id);
+        TEntity Get(object id);
 
         IEnumerable<TEntity> All(bool @readonly = false);
 

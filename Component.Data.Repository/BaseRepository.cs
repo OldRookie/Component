@@ -44,7 +44,7 @@ namespace Component.Data.Repository
             DbSet.Remove(entity);
         }
 
-        public TEntity Get(int id)
+        public TEntity Get(object id)
         {
             return DbSet.Find(id);
         }
@@ -146,6 +146,37 @@ namespace Component.Data.Repository
             pagination.records = tempData.Count();
             tempData = tempData.Skip<TEntity>(pagination.rows * (pagination.page - 1)).Take<TEntity>(pagination.rows).AsQueryable();
             return tempData;
+        }
+
+        public virtual IEnumerable<TEntity> FindEntireEntity(Expression<Func<TEntity, bool>> predicate,
+        bool @readonly = false, List<string> includeInfos = null)
+        {
+            var query = DbSet.AsQueryable();
+            query = @readonly
+                 ? query.Where(predicate).AsNoTracking()
+                 : query.Where(predicate);
+            foreach (var prop in typeof(TEntity).GetProperties().Where(p => p.GetMethod.IsVirtual))
+            {
+                if (prop.PropertyType.IsClass)
+                {
+                    query = query.Include(prop.Name);
+                }
+
+            }
+            if (includeInfos != null)
+            {
+                foreach (var item in includeInfos)
+                {
+                    query = query.Include(item);
+                }
+            }
+            return query;
+
+        }
+        public virtual bool Exist(Expression<Func<TEntity, bool>> predicate)
+        {
+            var query = DbSet.AsQueryable();
+            return query.Where(predicate).AsNoTracking().Any();
         }
         #region Dispose
 

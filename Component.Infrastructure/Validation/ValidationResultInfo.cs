@@ -11,10 +11,30 @@ namespace Component.Infrastructure
 
     public class ValidationBaseInfo
     {
-        public ValidationBaseInfo() {
+        public ValidationBaseInfo()
+        {
             ErrorMessages = new List<string>();
         }
         public bool IsValid { get { return ErrorMessages.Count == 0; } }
         public List<string> ErrorMessages { get; set; }
+    }
+
+    public class ValidationResultBaseInfo
+    {
+        public ValidationResultBaseInfo()
+        {
+            Messages = new List<string>();
+        }
+
+        public bool IsValid
+        {
+            get
+            {
+                return Messages.Count == 0;
+
+            }
+        }
+
+        public List<string> Messages { get; set; }
     }
 }
