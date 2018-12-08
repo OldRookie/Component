@@ -48,7 +48,25 @@
             validator.settings.ignore = ".ignore";
             validator.cancelSubmit = true;
         }
-       
+
+        //远程验证
+        validator.settings.ignore = ".ignore";
+        validator.cancelSubmit = true;
+        form.find('[data-val-remote]').each(function () {
+            var rules = $(this).rules()
+            rules.remote.data["Id"] = function () {
+                return $('#ID').val();
+            }
+        });
+
+        if (false) {
+            form.find('.payment-validation-item').each(function () {
+                if (!$(this).hasClass('ignore')) {
+                    $(this).addClass('ignore')
+                }
+            });
+        };
+
         $('.form-modal .btn-ok').click(function () {
             form.validate();
             if (form.valid()) {
